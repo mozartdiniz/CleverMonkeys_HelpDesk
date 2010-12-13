@@ -5,7 +5,7 @@ development:
   database: help_desk
   host: localhost
   username: root
-  password: easy
+  password: pass
   encoding: utf8
 
 # Warning: The database defined as "test" will be erased and
@@ -23,5 +23,5 @@ production:
   database: help_desk
   pool: 10
   username: lumley
-  password: j4ckt0rr3nc3
-  host: mysql.db.mozartdiniz.com
+  password: pass
+  host: mysql.host.com
