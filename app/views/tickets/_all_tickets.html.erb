@@ -1,0 +1,86 @@
+<table class="related_box" 
+       border="0"
+       cellpadding="0"
+       cellspacing="0"
+       width="100%">
+  <tr>
+    <th valign="top"  width="1"><img src="/images/rounded_box_cse.png"
+                                     alt="Rouded Image" /></th>
+    <th style="padding:5px;" width="99%">
+
+      <% if @enterprise.is_your_company %>
+
+      <input name=""
+             type="checkbox"
+             value=""
+             onclick="check_all(this,'input[name=\'open_ticket_ids[]\']');"/>
+      <% end %>
+
+      <%= I18n.t "views.ticket.all.open_tickets" %>
+
+    </th>
+    <th valign="top"
+        align="right"
+        width="1"><img src="/images/rounded_box_csd.png"
+                   alt="Rouded Image" /></th>
+  </tr>
+
+  <% @open_tickets.each do |ticket|  %>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td style="text-align: right; padding: 10px;" >
+      
+      <table class="ticket_grid">
+        <tr>
+          <td style="width: 1%"><%= priority_generator(ticket.priority_id) %></td>
+          <td style="text-align: left;"><%= link_to "#{I18n.t "views.ticket.all.ticket"}: " + ticket.ticket_number.to_s, {
+              :action => 'show',
+              :id => ticket.id
+            } %></td>
+          <td><%= ticket.created_at.strftime("%m/%d/%Y") %></td>
+        </tr>
+        <tr>
+          <td valign="top">
+            <% if @enterprise.is_your_company %>
+              <input id="ticket_ids_"
+                     name="open_ticket_ids[]"
+                     type="checkbox"
+                     value="<%= ticket.id %>" />
+            <% else %>
+              &nbsp;
+            <% end %>
+          </td>
+          <td style="text-align: left; font-weight: normal;" colspan="2">
+            <%= truncate(ticket.subject, :length => 200) %>
+          </td>
+        </tr>
+        <% if @enterprise.is_your_company %>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td style="text-align: right; width: 1%;">            
+              <%= link_to "#{I18n.t "views.ticket.all_staff.get_ticket"}", {
+                  :action => "get_ticket",
+                  :id => ticket.id
+                }, :class => "get_ticket" %>            
+          </td>
+        </tr>
+        <% end %>
+      </table>
+
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+
+  <% end %>
+
+
+  <tr class="footer">
+    <td><img src="/images/rounded_box_cie.png" alt="Rouded Image" /></td>
+    <td style="text-align: right; padding: 10px;" >
+      &nbsp;
+    </td>
+    <td><img src="/images/rounded_box_cid.png" alt="Rouded Image" /></td>
+  </tr>
+</table>

@@ -1,0 +1,46 @@
+<h1 class="grid_data">New Company</h1>
+
+<% form_for(@enterprise) do |f| %>
+
+  <div class="form">
+
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name, "Name:" %><br />
+    <%= f.text_field :name, :class => "text" %>
+  </p>
+  <p>
+    <%= f.label :email, "E-Mail:" %><br />
+    <%= f.text_field :email, :class => "text" %>
+  </p>
+  <p>
+    <%= f.label :other_email, "Alternative Email:" %><br />
+    <%= f.text_field :other_email, :class => "text" %>
+  </p>
+  <p>
+    <%= f.label :phone_01, "Phone 01:" %><br />
+    <%= f.text_field :phone_01, :class => "text" %>
+  </p>
+  <p>
+    <%= f.label :phone_02, "Phone 02:" %><br />
+    <%= f.text_field :phone_02, :class => "text" %>
+  </p>
+  <p>
+    <%= f.label :country_id, "Country:" %><br />
+    <%= f.select :country_id, @countries %>
+  </p>
+  <p>
+    <%= f.check_box :send_ticket_mail_for_all_company %>
+    <%= f.label :send_ticket_mail_for_all_company, "Send all ticket e-mails to company main address" %><br />
+  </p>
+  
+  </div>
+  <div class="buttons_containers_footer">
+    <div class="padding">
+      <%= f.submit 'Save', :class => "button" %> |
+      <%= link_to 'Back', enterprises_path %>
+    </div>
+  </div>
+<% end %>
+

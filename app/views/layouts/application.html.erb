@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= system_title %></title>
+  
+  <%= stylesheet_link_tag 'global' %>
+
+  <%= javascript_include_tag :all %>
+
+  <%= include_tiny_mce_if_needed %>
+
+  <script language="javascript" type="application/javascript">
+
+      function set_outdated(id) {
+        my_element = document.getElementById(id);
+
+        my_element.style.color = "red";
+      }
+
+      function updated(id) {
+        my_element = document.getElementById(id);
+
+        my_element.style.color = "black";
+      }
+
+
+  </script>
+
+</head>
+<body>
+
+<table id="header" cellpadding="0" cellspacing="0">
+	<tr>
+  	<td width="10%" class="logo_company">
+    		<a href="<%= request.env['HTTP_ORIGIN']%>/tickets/">
+			  	<img src="/images/logo_company.png" alt="Logo Lumley" border="0" />
+    		</a>
+    </td>
+    <td width="74%" valign="top" class="menu" align="center" >
+    	<div class="link_set">
+
+        <% unless (!session[:Allow_to_get_tickets].nil? || !session[:Allow_to_admin_tickets].nil?) && session[:Allow_to_maintain_languages].nil? && session[:Allow_to_maintain_user_groups].nil? && session[:Allow_to_admin_enterprises].nil? && session[:Allow_to_maintain_users].nil? && session[:Allow_to_configure_system].nil? %>
+
+          <% if params[:controller] == "tickets" %>
+
+            <%= link_to "#{I18n.t "views.global.menu.tickets" }",
+                        {:controller => "tickets",
+                         :action => "index"},
+                         :class => "current_link"%>
+
+          <% else %>
+
+            <%= link_to "#{I18n.t "views.global.menu.tickets" }",   
+                        :controller => "tickets",
+                        :action => "index" %>
+
+          <% end %>
+
+        <% end %>
+
+      <% unless session[:Allow_to_maintain_languages].nil? %>
+
+        <% if params[:controller] == "languages" %>
+
+          <%= link_to "#{I18n.t "views.global.menu.languages" }", 
+                      {:controller => "languages" ,:action => "index"},
+                      :class => "current_link" %>
+
+        <% else %>
+
+          <%= link_to "#{I18n.t "views.global.menu.languages" }", 
+                      :controller => "languages",
+                      :action => "index" %>
+
+        <% end %>
+
+      <% end %>
+
+      <% unless session[:Allow_to_maintain_user_groups].nil? %>
+
+        <% if params[:controller] == "groups" %>
+
+          <%= link_to "#{I18n.t "views.global.menu.user_group" }", {:controller => "groups", :action => "index"}, :class => "current_link" %>
+
+        <% else %>
+
+          <%= link_to "#{I18n.t "views.global.menu.user_group"}",     :controller => "groups", 			:action => "index" %>
+
+        <% end %>
+
+      <% end %>
+
+        <% unless session[:Allow_to_admin_enterprises].nil? %>
+
+          <% if params[:controller] == "enterprises" %>
+
+            <%= link_to "#{I18n.t "views.global.menu.companies" }",     {:controller => "enterprises", 			:action => "index"}, :class => "current_link" %>
+
+          <% else %>
+
+            <%= link_to "#{I18n.t "views.global.menu.companies" }",
+                         :controller => "enterprises",
+                         :action => "index" %>
+
+          <% end %>
+
+        <% end %>
+
+      <% unless session[:Allow_to_maintain_users].nil? %>
+
+        <% if params[:controller] == "users" %>
+
+          <%= link_to "#{I18n.t "views.global.menu.users" }", {:controller => "users", 			:action => "index"}, :class => "current_link" %>
+
+        <% else %>
+
+          <%= link_to "#{I18n.t "views.global.menu.users" }",     :controller => "users", 			:action => "index" %>
+
+        <% end %>
+
+      <% end %>
+
+      <% unless session[:Allow_to_configure_system].nil? %>
+
+        <% if params[:controller] == "global_configurations" %>
+
+          <%= link_to "#{I18n.t "views.global.menu.global_configuration" }", {:controller => "global_configurations", :action => "index"}, :class => "current_link" %>
+
+        <% else %>
+
+          <%= link_to "#{I18n.t "views.global.menu.global_configuration" }", :controller => "global_configurations", :action => "index" %>
+
+        <% end %>
+
+      <% end %>
+
+      </div>
+    </td>
+    <td width="16%" align="right" class="log_off" valign="top">
+
+        Hello <%= link_to "Hello #{session[:user_name]}", {:controller => 'users', :action => 'edit_profile', :id => session[:user_id]}, :alt => 'Edit your profile', :title => 'Edit your profile' %>
+
+        <%= link_to "<img src='/images/log_off.png' width='12' height='12' border='0' />",
+                {:controller => "admin",
+                :action => "logout"},
+                :style => "top:2px; position:relative;" %>
+    </td>
+  </tr>
+</table>
+
+
+<% unless flash[:notice].blank? %>
+
+  <p style="color: green; padding: 0px 10px 10px 10px;"><%= flash[:notice] %></p>
+
+<% end %>
+
+<div style="padding:0px 10px 10px 10px;">
+		<%= yield %>
+</div>
+<br /><br />
+<div id="footer">
+    <div style="position:absolute; color: #CCCCCC; margin-left:5%; margin-right:5%; padding-top:10px; width: 90%; text-align:center; border-top:1px solid #666666"> 
+      <%= system_footer %>
+    </div>
+</div>
+<br /><br /><br /><br />
+</body>
+</html>

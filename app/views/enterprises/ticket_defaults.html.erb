@@ -1,0 +1,83 @@
+<h1>Company Ticket Default Values</h1>
+
+<% form_for @tickets_default , :url => {:action => :ticket_defaults_save} do |f| %>
+
+<table style="border:none;">
+<tr>
+  <td class="tableHeader2" style="border:none;">
+    <%= I18n.t 'views.ticket.new.server.title' %>
+    <%= f.hidden_field :enterprise_id, :value => @tickets_default.enterprise_id %>
+  </td>
+</tr>
+<tr>
+  <td style="border:none;">
+    <table  style="width:950px; border:none;" border="0">
+      <tr>
+        <td style="width:150px; border:none;">
+          <%= I18n.t 'views.ticket.new.server.di_version' %> <br />
+          <%= text_field_with_auto_complete :di_server,
+                                            :version,
+                                            :style => "width:150px",
+                                            :class => "text",
+                                            :value => @tickets_default.di_version %>
+        </td>
+        <td style="width:190px; border:none;">
+          <%= I18n.t 'views.ticket.new.server.rts_version' %> <br />
+          <%= f.select :rts_versions_id, @rts_versions, :prompt => "" %>
+        </td>
+        <td style="width:230px; border:none;">
+          <%= I18n.t 'views.ticket.new.server.di_os_server_version' %> <br />
+          <%= f.select :di_os_version,   @os_versions, :prompt => "" %>
+        </td>
+        <td style="width:180px; border:none;">
+          <%= I18n.t 'views.ticket.new.server.di_database_info' %><br />
+          <%= f.select :di_database_info, @db_versions, :prompt => "" %>
+        </td>
+        <td style="width:150px; border:none;">
+          <%= I18n.t 'views.ticket.new.server.rts_database_info' %> <br />
+          <%= f.select :rts_database_info, @db_versions, :prompt => "" %>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+  <td class="tableHeader2" style="border:none;">
+    <%= I18n.t 'views.ticket.new.device.title' %>
+  </td>
+</tr>
+<tr>
+  <td style="border:none;">
+    <table style="width:950px; border:none;" border="0">
+      <tr style="border:none;">
+        <td style="width:152px; border:none;">
+          <%= I18n.t 'views.ticket.new.device.di_version' %> <br />
+          <%= text_field_with_auto_complete :di_device,
+                                            :version,
+                                            :style => "width:150px; z-index: 20; display:block;",
+                                            :class => "text",
+                                            :value => @tickets_default.device_version%>
+        </td>
+        <td style="border:none;">
+          <%= I18n.t 'views.ticket.new.device.di_user_language' %> <br />
+          <%= f.select :language_id, @languages, :prompt => "" %>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+
+  <%= f.submit "#{I18n.t 'views.global.buttons.save'}", :class => "btn" %>
+
+<input type="button"
+       value="Clear default values"
+       onclick="if (confirm('Are you sure?')) { window.location = '/enterprises/clear_default_values/<%= @tickets_default.enterprise_id %>'}"
+       class="btn"
+       />
+
+  <br /><br />
+
+  <a href="/enterprises/">Back</a>
+
+<% end %>

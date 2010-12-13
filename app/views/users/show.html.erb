@@ -1,0 +1,26 @@
+<p>
+  <h3>Name:
+  <%=h @user.display_name %></h3>
+</p>
+
+<%= form_remote_tag :url => {:controller => "users", :action => "add_language", :user_id => @user.id} %>
+
+Languages:
+
+<span id="select_languages">
+
+  <%= render :partial => 'select_languages' %>
+
+</span>
+
+<%= submit_tag "Add", :class => "btn" %>
+
+<div id="user_languages">
+
+	<%= render :partial => "user_languages", :object => @user_languages, :locals => {:language_id => @user.language_id} %>
+
+</div>
+
+<br />
+
+<%= link_to 'Back', users_path %>

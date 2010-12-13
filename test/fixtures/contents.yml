@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  text: MyText
+  parent_id: 1
+  lft: 1
+  rgt: 1
+
+two:
+  title: MyString
+  text: MyText
+  parent_id: 1
+  lft: 1
+  rgt: 1

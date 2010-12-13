@@ -1,0 +1,87 @@
+<table style="border:none" cellpadding="0" cellspacing="0">
+    <tbody>
+        <tr>
+        <td style="width:1%;">
+			    <h1 style="margin: 0px;">Tickets</h1>
+        </td>
+        <td style="border:none">
+          <%= link_to "#{I18n.t "views.ticket.all_staff.new"}",
+              {:controller => 'tickets',
+              :action => 'new'},
+              :class => "button" %>
+        </td>
+        <td style="border:none; width:1%">
+          <%= select_tag 'change_priority', 
+                       "<option>#{I18n.t "views.ticket.all_staff.set_priority"}</option>" + options_for_select(@priorities),
+                       :onchange => "send_all_ticket_checked('#ticket_ids_', '/tickets/set_priorities', $('change_priority').value); "%>
+        </td>
+        <td style="border:none; width:1%; padding:0px;">
+          <%= select_tag 'users',
+                          "<option>#{I18n.t "views.ticket.all_staff.assing_to_user"}</option>" + options_for_select(@users),
+                          :onchange => "send_all_ticket_checked('#ticket_ids_', '/tickets/set_users', $('users').value)"
+                      %>
+        </td>
+      </tr>
+      </tbody>
+  </table>
+
+<table border=0 cellpadding=0 cellspacing=0 class="grid_ticket">
+  <tr>
+    <th style="width:1%"><img src="/images/loadinfo-black.net.gif" 
+                              width="16"
+                              id="loading_spin"
+                              style="display:none;"/> </th>
+    <th style="width:1%"><%= I18n.t "views.ticket.all_staff.number" %></th>
+    <th style="width:80%"><%= I18n.t "views.ticket.all_staff.subject" %></th>
+    <th style="width:10%"><%= I18n.t "views.ticket.all_staff.assignee" %></th>
+    <th style="width:10%">Company</th>
+    
+  </tr>
+  <tr>
+    <td>
+      <%= select_tag 'filter[priority_id]',
+                     "<option></option>" + options_for_select(@priorities)%>
+    </td>
+    <td><%= text_field :filter,
+                       :ticket_number,
+                       :class => 'filter_text', :style => 'width:40px;' %></td>
+    <td><%= text_field :filter,
+                       :subject,
+                       :class => 'filter_text', :style => 'width:96%;' %></td>
+    <td>
+      <%= select_tag 'filter[assigned_user_id]',
+                      "<option></option>" + options_for_select(@users)
+                  %>
+    </td>
+
+    <td>
+      <%= select_tag 'filter[enterprise_id]',
+           "<option></option>" + options_for_select(@enterprises),
+           :style => 'width:100%' %>
+    </td>
+  </tr>
+
+<%= filter_observe_fields(:controller => :tickets, 
+                          :action => :index,
+                          :prefix => 'filter',
+                          :fields => ['priority_id', 'ticket_number', 'subject', 'assigned_user_id', 'enterprise_id']) %>
+
+
+</table>
+
+<table style="border: none">
+  <tr>
+    <td style="border: none; width: 33%; padding-left: 0px;" valign="top" id="all_tickets">
+      <%= render :partial => 'all_tickets' %>
+    </td>
+    <td style="border: none; width: 33%" valign="top" id="working_tickets">
+      <%= render :partial => 'working_tickets' %>
+    </td>
+    <td style="border: none;  width: 33%; padding-right: 0px;" valign="top" id="closed_tickets">
+      <%= render :partial => 'closed_tickets' %>
+    </td>
+  </tr>
+</table>
+
+<br />
+<br />

@@ -1,0 +1,35 @@
+first:
+  id: 1
+  title: some test page about ruby
+  body: this is a test page about ruby
+  section_id: 1
+second:
+  id: 2
+  title: another test page about ruby
+  body: this is another test page about ruby
+  section_id: 1
+third:
+  id: 3
+  title: yet another test page about ruby
+  body: this is yet another test page about ruby
+  section_id: 1
+fourth:
+  id: 4
+  title: a test page about rails specifically
+  body: this page is about rails
+  section_id: 2
+fifth:
+  id: 5
+  title: this page is about code
+  body: something about code
+  section_id: 3
+sixth:
+  id: 6
+  title: test for multiple finder
+  body: this is a test page for multiple finder
+  section_id: 1
+seventh:
+  id: 7
+  title: test for multiple finder
+  body: this is a test page for multiple finder
+  section_id: 2

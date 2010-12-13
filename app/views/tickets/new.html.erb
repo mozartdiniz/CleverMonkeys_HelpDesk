@@ -1,0 +1,112 @@
+<table class="content">
+  <tr>
+    <td valign="top">
+      <h1><%= I18n.t 'views.ticket.new.title' %></h1><br />
+      <% form_for @ticket, :html => { :multipart => 'true', :onsubmit => "return validate_ticket_form('#{I18n.t 'views.ticket.new.validate.message'}');" } do |f| %>
+
+          <%= f.error_messages %>
+
+          <table class='template_field_container'>
+            <tr>
+              <td class="template_label">
+                <%= I18n.t 'views.ticket.new.subject' %>
+              </td>
+              <td>
+                <%= f.text_field :subject,
+                                 :class => "text",
+                                 :style => 'width:99%' %>
+              </td>
+            </tr>
+            <% unless @user.enterprise.is_your_company.nil? %>
+            <tr>              
+              <td class="template_label">
+                <div style="position: absolute; margin-left: -16px; margin-top: 16px; display: none;" id="loading_defaults">
+                  <img src="/images/loadinfo.green.net.gif" alt="Loading" />
+                </div>
+                <%= I18n.t 'views.ticket.new.client' %>
+              </td>
+              <td>
+                
+                <%= select_tag "ticket[user_id]", enterprise_list_generator, :class => 'form_input', :onchange => remote_function(:update => "ticket_default_values",
+                                              :url => { :action => :ticket_default_values },
+                                              :before => "$('loading_defaults').show();",
+                                              :complete => "$('loading_defaults').hide();",
+                                              :with => "this.name + '=' + this.value") %>
+
+               <%= f.hidden_field :created_by_id,
+                                  :value => session[:user_id]  %>
+              </td>
+            </tr>
+            <% else %>
+              <%= f.hidden_field :user_id,
+                                 :value => session[:user_id]  %>
+              <%= f.hidden_field :created_by_id,
+                                 :value => session[:user_id]  %>
+            <% end %>
+            <tr>
+              <td class="template_label">
+                <%= I18n.t 'views.ticket.new.priority' %>:
+              </td>
+              <td>
+                <%= f.select :priority_id, @priorities %>
+              </td>
+            </tr>
+            <tr>
+              <td class="template_label">
+                <%= I18n.t 'views.ticket.new.ticket_type'%>                
+              </td>
+              <td>
+                <%= f.select :ticket_type_id, @ticket_type, :prompt => "" %>
+              </td>
+            </tr>
+          </table>
+
+            <%= template_fields('form') %>
+      
+          <table class='template_field_container'>
+              <tr>
+                <td class="tableHeader2" colspan="2">
+                    <%= I18n.t 'views.ticket.new.issue_information.title' %>
+                </td>
+              </tr>
+              <tr>
+                <td class="template_label" valign="top">
+                  <%= I18n.t 'views.ticket.new.issue_information.describe_the_issue_below' %>
+                </td>
+                <td>                 
+                  <%= f.text_area :issue_description,
+                                  :style => 'width:100%; height:200px; z-index:-1',
+                                  :class => "mceEditor" %>
+                </td>
+              </tr>
+              <tr>
+                <td class="tableHeader2" colspan="2">
+                  <%= I18n.t 'views.ticket.new.files.title' %>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td id="insert_files_here"></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td style="padding:10px 5px 10px 0px;">
+                  <a href="javascript:add_file_fields('insert_files_here', '<%= I18n.t 'views.ticket.new.files.remove_file' %>');">
+                    <%= I18n.t 'views.ticket.new.files.add_another_file' %>
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <div class="buttons_containers_footer">
+              <div class="padding">
+                <%= f.submit "#{I18n.t 'views.global.buttons.save'}", :class => "button" %> |
+                <a href="/"><%= I18n.t 'views.global.buttons.cancel' %></a>
+              </div>
+            </div>
+
+      <% end %>
+
+    </td>
+  </tr>
+
+</table>

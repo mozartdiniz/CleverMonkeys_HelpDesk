@@ -1,0 +1,46 @@
+<br />
+
+<table border=0 cellpadding=0 cellspacing=0>
+
+	<tr>
+		<th>User languages</th>
+    <th width="1%">Default</th>
+		<th width=1%>&nbsp;</th>		
+	</tr>	
+
+<% for language in @user_languages %>
+
+	<tr>
+		<td> <%= language["description"] %> </td>
+    <td align="center">
+
+      <img src="/images/loadinfo.green.net.gif"
+           width="16"
+           style="display: none; position: absolute; margin-left: -8px;"
+           alt="loading.."
+           id="loading_<%= language["language_id"] %>"/>
+
+      <input type="radio"
+             name="default_language"
+             value="<%= language["language_id"] %>"
+             style="cursor: pointer;"
+
+             <% if language["language_id"] == language_id %>
+             checked="checked"
+             <% end %>
+
+             onclick="<%= remote_function :url => {:action => "default_language",
+                                                   :id => @user.id,
+                                                   :language_id => language["language_id"]},
+                                          :before => "$('loading_#{language["language_id"]}').show();"%>"
+             />
+
+
+
+    </td>
+		<td> <%= link_to_remote "Destroy", :url => { :action => "destroy_language", :user_id => language["user_id"], :language_id => language["language_id"] }, :confirm => "Are you sure?" %> </td>			
+	</tr>	
+
+<% end %>
+
+</table>

@@ -1,0 +1,52 @@
+* {
+
+	font-family: "Trebuchet MS", helvetica, freesans, sans-serif;
+	font-size: 12px;
+	color: #000;
+
+}
+
+h1 {
+
+	font-size: 28px;
+	margin-top:0px;
+
+}
+
+h2 {
+
+	font-size: 22px;
+
+}
+
+h3 {
+
+
+	font-size: 18px;
+
+}
+
+.tableHeader1 {
+  background-color: #BBBBBB;
+}
+
+.tableHeader2 {
+  background-color: #535353;
+  padding: 3px 3px 3px 10px;
+  color: white;
+
+}
+
+.tableHeader2 table tr td {
+  background-color: #535353;
+  padding: 3px 3px 3px 5px;
+  color: white;
+}
+
+.tableHeader3 {
+  background-color: #BBBBBB;
+}
+
+.content, .content table {
+  width: 100%;
+}

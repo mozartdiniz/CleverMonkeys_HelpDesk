@@ -1,0 +1,27 @@
+<h1 class="grid_data">Listing Languages</h1>
+
+<span class="button_grid_data">
+  <%= link_to 'New Language', new_language_path, :class => 'button' %>
+</span>
+
+<br /><br />
+<table border=0 cellpadding=0 cellspacing=0 class="grid_data">
+  <tr>
+    <th>Language</th>
+    <th>Description</th>
+	<th width=1%>&nbsp;</th>
+  </tr>
+
+<% @languages.each do |language| %>
+  <tr>
+    <td><%= link_to language.iso, :action => "edit", :id => language.id %></td>
+    <td><%= link_to language.description, :action => "edit", :id => language.id %></td>
+    <td class="grid_buttons"><%= link_to("<img src='/images/delete_icon.gif' border='0' />", { :action => "destroy", :id => language.id }, :confirm => "Are you sure?", :method => :delete) %></td>
+  </tr>
+<% end %>
+  
+</table>
+
+<br />
+
+<%= link_to 'New Language', new_language_path, :class => 'button' %> <br /><br />

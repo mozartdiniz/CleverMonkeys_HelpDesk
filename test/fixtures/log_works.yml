@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  ticket_id: 1
+  user_id: 1
+  time_spend: 2010-10-06 10:14:39
+  start_date: 2010-10-06 10:14:39
+  description: MyText
+
+two:
+  ticket_id: 1
+  user_id: 1
+  time_spend: 2010-10-06 10:14:39
+  start_date: 2010-10-06 10:14:39
+  description: MyText

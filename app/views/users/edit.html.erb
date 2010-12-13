@@ -1,0 +1,76 @@
+<h1 class="grid_data">Editing User</h1>
+
+<% form_for @user, :html => { :multipart => true } do |f| %>
+
+  <div class="form">
+
+  <%= f.error_messages %>
+
+  <table class="layout" style="width: 600px;">
+  <tr>
+    <td>
+      <%= image_tag @user.photo.url(:small) %> <br /><br />
+      <%= f.label :photo, "Photo" %><br />
+      <%= f.file_field :photo %>
+    </td>
+    <td>
+      <input type="checkbox" name="delete_image" value="1"/> Delete image
+    </td>
+    <td>
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= f.label :name, "User Name:" %><br />
+      <%= f.text_field :name, :class => "text" %>
+    </td>
+    <td>
+      <%= f.label :display_name, "Display Name:" %><br />
+      <%= f.text_field :display_name, :class => "text" %>
+    </td>
+    <td>
+      <%= f.label :email, "E-Mail:" %><br />
+      <%= f.text_field :email, :class => "text" %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= f.label :password, "Password:" %><br />
+      <%= f.password_field :password, :class => "text" %>
+    </td>
+    <td>
+      <%= f.label :phone_number, "Phone number:" %><br />
+      <%= f.text_field :phone_number, :class => "text" %>
+    </td>
+    <td>
+      <%= f.label :mobile_number, "Mobile number:" %><br />
+      <%= f.text_field :mobile_number, :class => "text" %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <%= f.label :group_id, "Group:" %><br />
+    <%= f.select :group_id, @groups %>
+    </td>
+    <td>
+    <%= f.label :enterprise_id, "Company:" %><br />
+    <%= f.select :enterprise_id, @enterprises %>
+    </td>
+    <td>
+    <%= f.label :language_id, "Language:" %><br />
+    <%= f.select :language_id, @languages %>
+    </td>
+  </tr>
+</table>
+    
+</div>
+
+<div class="buttons_containers_footer">
+  <div class="padding">
+    <%= f.submit 'Update', :class => "button" %> |
+    <%= link_to 'Back', users_path %>
+  </div>
+</div>
+
+<% end %>

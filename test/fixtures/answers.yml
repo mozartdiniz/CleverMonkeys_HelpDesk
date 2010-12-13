@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  value: MyString
+  ticket_id: 1
+  template_field_id: 1
+
+two:
+  value: MyString
+  ticket_id: 1
+  template_field_id: 1

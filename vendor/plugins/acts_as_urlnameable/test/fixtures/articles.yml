@@ -1,0 +1,62 @@
+first:
+  id: 1
+  title: first test article
+  body: this is the first testing article
+  person_id: 1
+  comments_enabled: 1
+  
+second:
+  id: 2
+  title: second test article
+  body: this is the second testing article
+  person_id: 1
+  comments_enabled: 1
+  
+third:
+  id: 3
+  title: third test article
+  body: this is the third testing article
+  person_id: 1
+  comments_enabled: 0
+  
+fourth:
+  id: 4
+  title: fourth test article
+  body: this is the fourth testing article
+  person_id: 2
+  comments_enabled: 1
+  
+fifth:
+  id: 5
+  title: fifth test article
+  body: this is the fifth testing article
+  person_id: 2
+  comments_enabled: 1
+  
+sixth:
+  id: 6
+  title: sixth test article
+  body: this is the sixth testing article
+  person_id: 2
+  comments_enabled: 0
+  
+seventh:
+  id: 7
+  title: seventh test article
+  body: this is the seventh testing article
+  person_id: 1
+  comments_enabled: 1
+  
+eighth:
+  id: 8
+  title: eighth test article
+  body: this is the eighth testing article
+  person_id: 2
+  comments_enabled: 0
+  
+ninth:
+  id: 9
+  title: ninth test article
+  body: this is the ninth testing article
+  person_id: 1
+  comments_enabled: 1

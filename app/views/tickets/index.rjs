@@ -1,0 +1,3 @@
+page.replace_html 'all_tickets',     :partial => 'all_tickets',     :object => @open_tickets
+page.replace_html 'working_tickets', :partial => 'working_tickets', :object => @working_tickets
+page.replace_html 'closed_tickets',  :partial => 'closed_tickets',  :object => @closed_tickets

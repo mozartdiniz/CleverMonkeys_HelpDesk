@@ -1,0 +1,23 @@
+<h1 style="margin: 0px;">Tickets : <%= @enterprise.name %></h1>
+<br />
+<%= link_to "#{I18n.t "views.ticket.all_staff.new"}", {:controller => 'tickets', :action => 'new'}, :class => "button" %>
+<br /><br />
+<table style="border: none">
+  <tr>
+    <td style="border: none; width: 33%" valign="top" id="all_tickets">
+      <%= render :partial => 'all_tickets' %>
+    </td>
+    <td style="border: none; width: 33%" valign="top" id="working_tickets">
+      <%= render :partial => 'working_tickets' %>
+    </td>
+    <td style="border: none;  width: 33%" valign="top" id="closed_tickets">
+      <%= render :partial => 'closed_tickets' %>
+    </td>
+  </tr>
+</table>
+
+<br />
+
+<%= link_to "#{I18n.t "views.ticket.all_staff.new"}", {:controller => 'tickets', :action => 'new'}, :class => "button" %>
+
+<br /><br /><br />

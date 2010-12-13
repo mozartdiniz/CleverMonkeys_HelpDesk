@@ -1,0 +1,109 @@
+<div id="logwork_box" style="position: absolute; left: 0px; top: 0px;">
+  <div id="logwork_box_content">
+    
+  </div>
+</div>
+
+<table class="related_box" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <th valign="top" 
+        width="1"><img src="/images/rounded_box_cse.png"
+                       alt="Rouded Image" /></th>
+    <th style="padding:5px;"
+        width="99%">
+
+      <% if @enterprise.is_your_company %>
+
+      <input name="" 
+             type="checkbox" 
+             value="" 
+             onclick="check_all(this,'input[name=\'working_ticket_ids[]\']');"/>
+
+      <% end %>
+      
+      <%= I18n.t "views.ticket.all.assigned_tickets" %>
+
+    </th>
+    <th valign="top"
+        align="right"
+        width="1"><img src="/images/rounded_box_csd.png"
+                   alt="Rouded Image" /></th>
+  </tr>
+
+  <% @working_tickets.each do |ticket|  %>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td style="text-align: right; padding: 10px;" >
+
+      <table class="ticket_grid">
+        <tr>
+          <td style="width: 1%"><%= priority_generator(ticket.priority_id) %></td>
+          <td style="text-align: left; width: 40%"><%= link_to "#{I18n.t "views.ticket.all.ticket"}: " + ticket.ticket_number.to_s, {:action => 'show', :id => ticket.id} %></td>
+          <td style="width: 60%"><%= ticket.assignee %> | <%= ticket.created_at.strftime("%m/%d/%Y") %></td>
+        </tr>
+        <tr>
+          <td valign="top">
+            <% if @enterprise.is_your_company %>
+              <input id="ticket_ids_" name="working_ticket_ids[]" type="checkbox" value="<%= ticket.id %>" />
+            <% else %>
+              &nbsp;
+            <% end %>
+          </td>
+          <td style="text-align: left; font-weight: normal;" colspan="2">
+            <%= truncate(ticket.subject, :length => 200) %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center"><img src="/images/work_log.png" 
+                                  border="0"
+                                  alt="worked time"/></td>
+          <td align="left">
+            
+            <%= link_to_remote "#{Rufus.to_duration_string ticket.log_works.sum('time_spend') unless ticket.log_works.nil?}", :update => "log_work_#{ticket.id}",
+                                                :url => {
+                                                    :action => :new_log_work_home,
+                                                    :ticket_id => ticket.id,
+                                                    :user_id   => session[:user_id]
+                                                        },
+                                                          :before => "$('loading_#{ticket.id}').show();",
+                                                          :complete => "$('loading_#{ticket.id}').hide();"
+                                                 %>
+            <img src="/images/loadinfo-black.net.gif"
+                 width="15px;"
+                 style="margin-top: 0px; position: absolute; display: none;"
+                 id="loading_<%= ticket.id %>"/>
+          </td>
+          <td style="" align="right">
+            <table style="margin:0px; padding: 0px; width: 100px;">
+              <tr>
+                <% unless ticket.ticket_status.nil? %>
+                  <% if ticket.ticket_status.description == "Reopened" %>
+                  <td style="width: 10px;"><img src='/images/alert.png' border='0' /></td>
+                  <% end %>
+                <% end %>
+                <td style="width: 100px;"><%= ticket_status_generator(ticket) %></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td id="log_work_<%= ticket.id %>"></td>
+    <td></td>
+  </tr>
+  <% end %>
+
+
+  <tr class="footer">
+    <td><img src="/images/rounded_box_cie.png" alt="Rouded Image" /></td>
+    <td style="text-align: right; padding: 10px;" >
+      &nbsp;
+    </td>
+    <td><img src="/images/rounded_box_cid.png" alt="Rouded Image" /></td>
+  </tr>
+</table>

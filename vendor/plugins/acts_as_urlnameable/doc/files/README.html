@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Mar 10 16:08:00 EST 2006</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>About</h2>
+<p>
+This plugin provides an easy way to give your ActiveRecord models clean
+urlnames, for use anywhere you don&#8217;t want to use a plain old integer
+id.
+</p>
+<p>
+To use it, first either copy over the migration in
+<tt>db/00x_add_urlnames_table.rb</tt> and migrate it to it, or import the
+SQL in <tt>db/urlnames_table.sql</tt>.
+</p>
+<p>
+This plugin also requires at least Rails 1.1 (currently edge. See <a
+href="http://wiki.rubyonrails.com/rails/pages/EdgeRails">wiki.rubyonrails.com/rails/pages/EdgeRails</a>)
+For updates see <a
+href="http://gabriel.gironda.org">gabriel.gironda.org</a>, and for
+licensing see LICENSE.
+</p>
+<hr size="2"></hr><h2>Simple usage:</h2>
+<h3>Setting the url name</h3>
+<p>
+The usage that will work for 80% of cases is this:
+</p>
+<pre>
+        class Article &lt; ActiveRecord::Base
+          acts_as_urlnameable :title
+        end
+</pre>
+<p>
+This will format the value of the <tt>title</tt> attribute of the record to
+one suitable for use in a URL and save it. Further changes to
+<tt>title</tt> will not overwrite the url name. The value can then be
+accessed with +object.urlname+. If the url name already exists, an error
+will be added to the <tt>urlname</tt> attribute.
+</p>
+<p>
+To allow overwrites of the url name, call <tt>acts_as_urlname</tt> with the
+following option:
+</p>
+<pre>
+        class Article &lt; ActiveRecord::Base
+          acts_as_urlnameable :title, :overwrite =&gt; true
+        end
+</pre>
+<h3>Validation</h3>
+<p>
+The url name will now be overwritten if the value of <tt>title</tt>
+changes. To change the default validation message you can use the
+<tt>:message</tt> option:
+</p>
+<pre>
+        class Article &lt; ActiveRecord::Base
+          acts_as_urlnameable :title, :overwrite =&gt; true, :message =&gt; 'is unavailable.'
+        end
+</pre>
+<h3>Finding records</h3>
+<p>
+Records can be located via the <tt>find_by_urlname</tt> method, like so:
+</p>
+<pre>
+        Article.find_by_urlname('some_urlname')
+</pre>
+<hr size="2"></hr><h2>Advanced usage:</h2>
+<p>
+This section is for those of us who like to mess with ActiveRecord a little
+more than usual.
+</p>
+<h3>Setting the url name</h3>
+<p>
+You can set objects to be known by any past url names they may have had,
+even if the current one is different. The usage in this case would be:
+</p>
+<pre>
+        class Article &lt; ActiveRecord::Base
+          acts_as_urlnameable :title, :mode =&gt; :multiple
+        end
+</pre>
+<p>
+The instance method <tt>past_urlnames</tt> will then return all url names
+other than the current one, while <tt>all_urlnames</tt> will return all url
+names the object has ever been known by, including the current url name.
+The <tt>:overwrite</tt> option has no effect on objects with multiple
+urlnames for obvious reasons.
+</p>
+<p>
+You can also define your own <tt>urlnameify</tt> method if you would prefer
+not to use the default url name formatting.
+</p>
+<pre>
+        class Article &lt; ActiveRecord::Base
+          acts_as_urlnameable :title, :mode =&gt; :multiple
+
+                protected
+                def urlnameify(text)
+                        text.to_s.downcase + '_permalink'
+                end
+        end
+</pre>
+<h3>Validation</h3>
+<p>
+Acts as Urlnameable gives you five options for validation:
+</p>
+<pre>
+        * Skip any kind of validation (usually undesirable)
+        * Validating against the base class (the default)
+        * Validating against the child class (for use with single table inheritance)
+        * Validating against the parent object (for associations)
+        * Define your own validate_urlname method
+</pre>
+<h4>Skipping validation</h4>
+<p>
+To skip validation, use the plugin like so:
+</p>
+<pre>
+        class Article &lt; ActiveRecord::Base
+          acts_as_urlnameable :title, :mode =&gt; :multiple, :validate =&gt; false
+        end
+</pre>
+<h4>Validating against the base class or child class</h4>
+<p>
+If you&#8217;re using single table inheritance in ActiveRecord, and your
+models look like this for example:
+</p>
+<pre>
+        class Article &lt; ActiveRecord::Base
+          acts_as_urlnameable :title
+        end
+
+        class SpecialArticle &lt; Article
+        end
+
+        class Draft &lt; Article
+        end
+</pre>
+<p>
+Then by default, a Draft can not have the same url name as a
+SpecialArticle. If you&#8217;d like to change this behaviour, then use the
+<tt>:sti_class</tt> option with <tt>:validate</tt>
+</p>
+<pre>
+        class Article &lt; ActiveRecord::Base
+          acts_as_urlnameable :title, :validate =&gt; :sti_class
+        end
+</pre>
+<p>
+Now Draft and SpecialArticle can have the same url name set.
+<tt>SpecialArticle.find_by_urlname</tt> will find only the SpecialArticle
+with the matching url name, and <tt>Draft.find_by_urlname</tt> will find
+only the Draft with the url name given.
+</p>
+<p>
+<tt>Article.find_by_urlname</tt> will find the first Article with the given
+url name, whereas <tt>Article.find_all_by_urlname</tt> will find both the
+Draft and SpecialArticle objects.
+</p>
+<h4>Validating against the parent object</h4>
+<p>
+Here&#8217;s an example model setup:
+</p>
+<pre>
+        class Person &lt; ActiveRecord::Base
+                has_many :articles
+        end
+
+        class Article &lt; ActiveRecord::Base
+          acts_as_urlnameable :title
+                belongs_to :person
+        end
+</pre>
+<p>
+If you would like to validate the url name for an article against the
+parent object, pass the name of the <tt>belongs_to</tt> association as the
+option for <tt>:validate</tt>. Example:
+</p>
+<pre>
+        class Article &lt; ActiveRecord::Base
+          acts_as_urlnameable :title, :validate =&gt; :person
+                belongs_to :person
+        end
+</pre>
+<p>
+Now for the validation to work properly, you must instantiate the new
+article through the association. This is best explained like this:
+</p>
+<pre>
+        # Find two different people
+        bob = Person.find_by_first_name('bob')
+        joe = Person.find_by_first_name('joe')
+
+        # Have Bob write a new article
+        bobs_article = bob.articles.build(:title =&gt; &quot;My first article&quot;, :body =&gt; &quot;This is my first article&quot;)
+        bobs_article.save      # passes validation and saves ok
+
+        # Have Joe write a new article
+        joes_article = joe.articles.build(:title =&gt; &quot;My first article&quot;, :body =&gt; &quot;This is my first article&quot;)
+        joes_article.save              # passes validation and saves ok
+
+        # Find Bob's first article
+        bob.articles.find_by_urlname('my_first_article')
+
+        # Find Joe's first article
+        joe.articles.find_by_urlname('my_first_article')
+</pre>
+<p>
+Both articles validate because the validation is scoped against the owner.
+Bob and Joe can both have articles known as &#8216;my_first_article&#8217;,
+and the finder method will find only their own articles.
+<tt>Article.find_all_by_urlname(&#8216;my_first_article&#8217;)</tt> will
+find both articles.
+</p>
+<h4>Custom validation</h4>
+<p>
+You can also define your own validate_urlname method in the class for
+custom validation, like so:
+</p>
+<pre>
+        class Person &lt; ActiveRecord::Base
+          acts_as_urlnameable :first_name
+
+                protected
+                def validate_urlname
+                        if Person.find_by_urlname(attr_to_urlname)
+                                errors.add(:urlname, 'is not available.')
+                        elsif attr_to_urlname == 'bob'
+                                errors.add_to_base('You might be Bob, and I hate Bob.')
+                        end
+                end
+        end
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

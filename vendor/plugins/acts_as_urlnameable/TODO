@@ -1,0 +1,5 @@
+* Write more documentation
+* Clean up tests. Make more use of assert_kind and such.
+* Consider using more reflection instead of the +owner_association+ option
+
+If you'd like to help with either of these please email mailto:contact@gironda.org. Likewise if you have any bug fixes.

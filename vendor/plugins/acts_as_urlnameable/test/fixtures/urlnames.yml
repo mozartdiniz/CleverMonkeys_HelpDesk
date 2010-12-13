@@ -1,0 +1,153 @@
+# Article urlname fixtures
+urlname_1:
+  id: 1
+  nameable_id: 1
+  nameable_type: Article
+  name: old_first_test_title
+    
+urlname_2:
+  id: 2
+  nameable_id: 1
+  nameable_type: Article
+  name: first_test_article
+  
+urlname_3:
+  id: 3
+  nameable_id: 4
+  nameable_type: Article
+  name: fourth_test_article
+    
+urlname_4:
+  id: 4
+  nameable_id: 2
+  nameable_type: Article
+  name: second_test_article
+
+urlname_5:
+  id: 5
+  nameable_id: 3
+  nameable_type: Article
+  name: old_third_test_title
+    
+urlname_6:
+  id: 6
+  nameable_id: 3
+  nameable_type: Article
+  name: third_test_article
+    
+urlname_7:
+  id: 7
+  nameable_id: 5
+  nameable_type: Article
+  name: fifth_test_article
+    
+urlname_8:
+  id: 8
+  nameable_id: 1
+  nameable_type: Article
+  name: first_test_article_edit
+    
+urlname_9:
+  id: 9
+  nameable_id: 7
+  nameable_type: Article
+  name: seventh_test_article
+    
+urlname_10:
+  id: 10
+  nameable_id: 9
+  nameable_type: Article
+  name: ninth_test_article
+
+# Person urlname fixtures
+urlname_11:
+  id: 11
+  nameable_id: 1
+  nameable_type: Person
+  name: joe_smith
+    
+urlname_12:
+  id: 12
+  nameable_id: 2
+  nameable_type: Person
+  name: jane_somebody
+    
+urlname_13:
+  id: 13
+  nameable_id: 2
+  nameable_type: Person
+  name: jane_smith
+    
+urlname_14:
+  id: 14
+  nameable_id: 2
+  nameable_type: Person
+  name: jane_bloggs
+
+# Section urlname fixtures
+urlname_15:
+  id: 15
+  nameable_id: 1
+  nameable_type: Section
+  name: ruby
+
+urlname_16:
+  id: 16
+  nameable_id: 1
+  nameable_type: Section
+  name: ruuuby
+
+urlname_17:
+  id: 17
+  nameable_id: 2
+  nameable_type: Section
+  name: ruby_on_rails
+
+urlname_18:
+  id: 18
+  nameable_id: 3
+  nameable_type: Section
+  name: code
+  
+# Page urlname fixtures
+urlname_19:
+  id: 19
+  nameable_id: 1
+  nameable_type: Page
+  name: some_test_page_about_ruby
+  
+urlname_20:
+  id: 20
+  nameable_id: 2
+  nameable_type: Page
+  name: another_test_page_about_ruby
+  
+urlname_21:
+  id: 21
+  nameable_id: 3
+  nameable_type: Page
+  name: yet_another_test_page_about_ruby
+
+urlname_22:
+  id: 22
+  nameable_id: 4
+  nameable_type: Page
+  name: a_test_page_about_rails_specifically
+
+urlname_23:
+  id: 23
+  nameable_id: 5
+  nameable_type: Page
+  name: this_page_is_about_code
+  
+urlname_24:
+  id: 24
+  nameable_id: 6
+  nameable_type: Page
+  name: test_for_multiple_finder
+  
+urlname_25:
+  id: 25
+  nameable_id: 7
+  nameable_type: Page
+  name: test_for_multiple_finder

@@ -1,0 +1,28 @@
+<h1 class="grid_data">Listing Companies</h1>
+
+<span class="button_grid_data">
+  <%= link_to 'New Company', new_enterprise_path, :class => 'button' %>
+</span>
+
+<br /><br />
+<table border=0 cellpadding=0 cellspacing=0 class="grid_data">
+  <tr>
+    <th width="40%">Name</th>
+    <th width="35%">E-Mail</th>
+    <th width="20%">Country</th>
+	  <th width=1%>&nbsp;</th>
+  </tr>
+
+<% @enterprises.each do |enterprise| %>
+  <tr>
+    <td><%= link_to enterprise.name, edit_enterprise_path(enterprise) %></td>
+    <td><%= link_to enterprise.email, edit_enterprise_path(enterprise) unless enterprise.email.nil? %></td>
+    <td><%= link_to enterprise.country.name, edit_enterprise_path(enterprise) %></td>
+    <td><%= link_to "<img src='/images/delete_icon.gif' border='0' />", enterprise, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Company', new_enterprise_path, :class => 'button' %> <br /><br />

@@ -1,0 +1,5 @@
+page.replace_html 'select_languages', :partial => 'select_languages',
+                                      :object => @languages
+
+page.replace_html 'user_languages', :partial => 'user_languages',
+                                    :object => @user_languages, :locals => {:language_id => @user.language_id}

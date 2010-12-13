@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  release_note_version: MyString
+  name: MyString
+  path: MyString
+  file_type: MyString
+  file_size: 1
+
+two:
+  release_note_version: MyString
+  name: MyString
+  path: MyString
+  file_type: MyString
+  file_size: 1

@@ -1,0 +1,317 @@
+pt:
+  # formatos de data e hora
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d de %B"
+      long: "%d de %B de %Y"
+
+    day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
+    abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sáb]
+    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
+    abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
+    order: [:day, :month, :year]
+
+  time:
+    formats:
+      default: "%A, %d de %B de %Y, %H:%M h"
+      short: "%d/%m, %H:%M h"
+      long: "%A, %d de %B de %Y, %H:%M h"
+    am: ''
+    pm: ''
+
+  # distancia do tempo em palavras
+  datetime:
+    distance_in_words:
+      half_a_minute: 'meio minuto'
+      less_than_x_seconds:
+        one: 'menos de 1 segundo'
+        other: 'menos de %{count} segundos'
+
+      x_seconds:
+        one: '1 segundo'
+        other: '%{count} segundos'
+
+      less_than_x_minutes:
+        one: 'menos de um minuto'
+        other: 'menos de %{count} minutos'
+
+      x_minutes:
+        one: '1 minuto'
+        other: '%{count} minutos'
+
+      about_x_hours:
+        one: 'aproximadamente 1 hora'
+        other: 'aproximadamente %{count} horas'
+
+      x_days:
+        one: '1 dia'
+        other: '%{count} dias'
+
+      about_x_months:
+        one: 'aproximadamente 1 mês'
+        other: 'aproximadamente %{count} meses'
+
+      x_months:
+        one: '1 mês'
+        other: '%{count} meses'
+
+      about_x_years:
+        one: 'aproximadamente 1 ano'
+        other: 'aproximadamente %{count} anos'
+
+      over_x_years:
+        one: 'mais de 1 ano'
+        other: 'mais de %{count} anos'
+
+      almost_x_years:
+        one: 'quase 1 ano'
+        other: 'quase %{count} anos'
+
+    prompts:
+      year:   "Ano"
+      month:  "Mês"
+      day:    "Dia"
+      hour:   "Hora"
+      minute: "Minuto"
+      second: "Segundos"
+
+  # numeros
+  number:
+    format:
+      precision: 3
+      separator: ','
+      delimiter: '.'
+    currency:
+      format:
+        unit: 'R$'
+        precision: 2
+        format: '%u %n'
+        separator: ','
+        delimiter: '.'
+    percentage:
+      format:
+        delimiter: '.'
+    precision:
+      format:
+        delimiter: '.'
+    human:
+      format:
+        precision: 2
+        delimiter: '.'
+        significant: true
+        strip_unsignificant_zeros: true
+      # number_to_human_size()
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+      # number_to_human()
+      # new in rails 3: please add to other locales
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: "mil"
+          million:
+            one: milhão
+            other: milhões
+          billion:
+            one: bilhão
+            other: bilhões
+          trillion:
+            one: trilhão
+            other: trilhões
+          quadrillion:
+            one: quatrilhão
+            other: quatrilhões
+
+  # Usado no Array.to_sentence
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " e "
+      last_word_connector: " e "
+
+  # ActiveRecord
+  activerecord:
+    models:
+      ticket:
+        one: "Ticket"
+        other: "Tickets"
+    attributes:
+      ticket:
+        issue_description: "Descrição da pendência"
+        subject: "Assunto"
+        di_os_version: "Sistema Operaciona do DI"
+        di_database_info: "Informação de Banco de Dados do DI"
+        rts_database_info: "Informação de Banco de Dados do RTS"
+        rts_versions_id: "Versões do RTS"
+        language_id: ""
+    errors:
+      template:
+        header:
+          one: "Não foi possível gravar {{model}}: 1 erro"
+          other: "Não foi possível gravar  {{model}} {{count}}: erros."
+        body: "Por favor, verifique o(s) seguinte(s) campo(s):"
+      messages:
+        inclusion: "não está incluído na lista"
+        exclusion: "não está disponível"
+        invalid: "não é válido"
+        confirmation: "não está de acordo com a confirmação"
+        accepted: "deve ser aceito"
+        empty: "não pode ficar vazio"
+        blank: "não pode ficar em branco"
+        too_long: "é muito longo (máximo: %{count} caracteres)"
+        too_short: "é muito curto (mínimo: %{count} caracteres)"
+        wrong_length: "não possui o tamanho esperado (%{count} caracteres)"
+        taken: "já está em uso"
+        not_a_number: "não é um número"
+        not_an_integer: "não é um número inteiro"
+        greater_than: "deve ser maior do que %{count}"
+        greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+        equal_to: "deve ser igual a %{count}"
+        less_than: "deve ser menor do que %{count}"
+        less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+        odd: "deve ser ímpar"
+        even: "deve ser par"
+        record_invalid: "A validação falhou: %{errors}"
+        ticket:
+          invalid_di_server_version: "Versão do servidor do DI é inválida"
+          invalid_di_device_version: "Versão do dispositivo do DI é inválida"
+
+  views:
+    global:
+      buttons:
+        save: "Salvar"
+        cancel: "Cancelar"
+        submit: "Enviar"
+        back: "Voltar"
+        save_ticket_changes: "Salvar alterações no ticket"
+      menu:
+        tickets: "Chamados"
+        languages: "Línguas"
+        user_group: "Grupos de usuários"
+        companies: "Empresas"
+        users: "Usuários"
+        global_configuration: "Configurações Globais"
+    public:
+      send_mail: "Enviar E-Mail"
+      printer_friendly: "Impressão"
+      helpfull_window:
+        thanks: "Obrigado"
+        how_be_more_helpfull: "Como nós podemos ser mais úteis para você?"
+    ticket:
+      all:
+        ticket: "CHAMADO"
+        title: "Todos os Tickets"
+        new: "Novo chamado"
+        number: "Número"
+        subject: "Assunto"
+        assignee: "Responsável"
+        di_version: "Versão do DI"
+        rts_version: "Versão do RTS"
+        open_date: "Data de abertura"
+        created_by: "Criado por"
+        at: "em"
+        assigned_to: "Atribuido à"
+        open_tickets: "Chamados em aberto"
+        assigned_tickets: "Chamados em andamento"
+        closed_tickets: "Chamados encerrados"
+      all_staff:
+        title: "Novo chamado"
+        new: "Novo chamado"
+        number: "Número"
+        subject: "Assunto"
+        assignee: "Responsável"
+        di_version: "Versão do DI"
+        rts_version: "Versão do RTS"
+        open_date: "Data de abertura"
+        set_priority: "Atribuir prioridade aos tickets selecionados"
+        assing_to_user: "Atribuir ticket a um usuário"
+        get_ticket: "PEGAR TICKET"
+      public_window:
+        new: "Novo Ticket"
+        all: "Ver todos os Tickets"
+        number: "Novo Ticket"
+        assing_to_me: "Tickets atribuidos a mim"
+      new:
+        title: "Novo chamado"
+        subject: "Assunto"
+        priority: "Prioridade"
+        di_edition: "Edição do DI"
+        ticket_type: "Tipo de Chamado"
+        client: "Informado por"
+        server:
+          title: "Servidor"
+          di_version: "Versão do DI"
+          rts_version: "Versão do RTS"
+          di_os_server_version: "Versão do S.O. do servidor do DI"
+          di_database_info: "Banco do DI"
+          rts_database_info : "Banco do RTS"
+        device:
+          title: "Cliente"
+          di_version: "Versão do DI"
+          device_model: "Modelo do dispositivo"
+          device_os_version: "Sistema Operacional do Dispositivo"
+          di_user_language: "Idioma do Usuário"
+        issue_information:
+          title: "Informações da pendência"
+          describe_the_issue_below: "Descreva a pendência"
+          replicate_error_message_below: "Replique a mensagem de erro"
+          steps_to_reproduce: "Passos para ser reproduzir o problema"
+          remote_support_instructions: "Instruções para suporte remoto"
+          aditional_notes: "Notas Adicionais"
+          status: "Status"
+        files:
+          title: "Arquivos"
+          add_another_file: "Adicionar outro arquivo"
+          remove_file: "Remover"
+        validate:
+          message: "As versões do DI não podem ficar em branco"
+      show:
+        files:
+          add_files_to_this_ticket: "Adicione arquivos a este ticket"
+          uplad_description: "Você pode subir arquivos de log, screenshots ou qualquer outro arquivo que possa ajudar ao suporte."
+        comments:
+          title: "Comentários"
+          add_comment: "Adicionar comentário"
+          new_comment: "Novo comentário"
+          subject: "Assunto"
+          message: "Mesagem"
+          add_another_file: "Adicionar novo arquivo"
+        work_log:
+          title: "Registro de trabalho"
+          btn: "Registrar trabalho"
+          window_title: "Novo registro de trabalho"
+          time_spend: "Tempo gasto"
+          time_spend_description: " Uma estimativa de quanto tempo você gastou trabalhando. <br />
+
+                                    O formato é *w *d *h *m (representando semanas, dias, horas e minutos - onde * pode ser qualquer número)
+                                    <br /><br />
+                                    Exemplo: 4d, 5h, 30m, 60m e 3w"
+          start_date: "Data de inicio (d/m/a)"
+          work_description: "Descrição do trabalho"
+          time_worked: "Tempo trabalhado"
+      status_generator:
+        closed: "Fechado"
+        cancelled: "Cancelado"
+        resolved: "Resolvido"
+        reopened: "Reaberto"
+        working: "Em andamento"
+        assigned: "Atribuído"
+        forwarded: "Encaminhado"
+        open: "Aberto"
+      send_mail:
+        hello: "Olá"
+        your_ticket: "seu ticket"
+        has_a_new_comment: "tem um novo comentário"
+        subject: "Assunto"
+        message: "Mensagem"
+        ticket_issue: "Descrição da pendência"

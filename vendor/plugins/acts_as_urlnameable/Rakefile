@@ -1,0 +1,25 @@
+require 'rubygems'
+require 'rake'
+require 'rake/rdoctask'
+require 'rake/testtask'
+
+desc "Default Task"
+task :default => [ :test ]
+
+# Run the unit tests
+Rake::TestTask.new { |t|
+  t.test_files = "test/acts_as_urlnameable_test.rb"
+  t.verbose = true
+}
+
+
+# Generate the RDoc documentation
+Rake::RDocTask.new { |rdoc|
+  rdoc.rdoc_dir = 'doc'
+  rdoc.rdoc_files.include('README', 'LICENSE', 'TODO')
+  rdoc.rdoc_files.include('lib/*.rb')
+  rdoc.rdoc_files.exclude('lib/urlname.rb')
+  rdoc.title    = 'Acts as Urlnameable - Like Acts as Permalink, but not!'
+  rdoc.options << '--line-numbers' << '--inline-source'
+  rdoc.main     = 'README'
+}

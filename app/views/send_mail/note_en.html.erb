@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>release_notes.png</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+td img {display: block;}
+
+h2 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #469239;
+	font-weight: normal;
+	font-size:28px;
+}
+body table tr td {
+	color: #333;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height:25px;
+}
+
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+body table tr td h1 {
+	color: #006666;
+	font-size: 24px;
+	font-weight: normal;
+}
+#apDiv1 {
+	position:absolute;
+	top:42px;
+	width:437px;
+	height:30px;
+	z-index:1;
+	margin-left:14px;
+	font-weight:bold;
+	color: #3A4B46;
+	font-size: 16px;
+}
+#apDiv2 {
+	position:absolute;
+	top:5px;
+	width:436px;
+	height:37px;
+	z-index:2;
+	color:#006666;
+	font-weight:bold;
+	font-size:22px;
+	margin-left:14px;
+}
+</style>
+<!--Fireworks CS3 Dreamweaver CS3 target.  Created Mon May 10 16:15:06 GMT-0300 (BRT) 2010-->
+</head>
+<body bgcolor="#ffffff" style="border:0px; margin:0px;">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="release_note_edit_table">
+  <tr>
+    <td align="center"><table border="0" cellpadding="0" cellspacing="0" width="600">
+      <!-- fwtable fwsrc="new version news letter 01.png" fwpage="Page 1" fwbase="release_notes.png" fwstyle="Dreamweaver" fwdocid = "1853921631" fwnested="0" -->
+      <tr>
+        <td><img src="http://sagaranatech.com/marketing/releasenotes/images/spacer.gif" width="138" height="1" border="0" alt="" /></td>
+        <td><img src="http://sagaranatech.com/marketing/releasenotes/images/spacer.gif" width="462" height="1" border="0" alt="" /></td>
+        <td><img src="http://sagaranatech.com/marketing/releasenotes/images/spacer.gif" width="1" height="1" border="0" alt="" /></td>
+      </tr>
+      <tr>
+        <td><img name="release_notes_r1_c1" src="http://sagaranatech.com/marketing/releasenotes/images/release_notes_r1_c1.png" width="138" height="77" border="0" id="release_notes_r1_c1" alt="" /></td>
+        <td ><img src="http://sagaranatech.com/marketing/releasenotes/images/title.png" alt="" width="462" height="77" /><div id="apDiv2"><%= @note.title %></div><div id="apDiv1"><%= @note.language_id == 'en' ? 'Version:' : @note.language_id == 'pt' ? 'Versão:' : @note.language_id == 'es' ? 'Versión:' : '' %><%= @note.version %></div></td>
+        <td><img src="http://sagaranatech.com/marketing/releasenotes/images/spacer.gif" width="1" height="77" border="0" alt="" /></td>
+      </tr>
+      <tr>
+        <td valign="top"><img src="http://sagaranatech.com/marketing/releasenotes/images/release_notes_r2_c1.png" alt="" name="release_notes_r2_c1" width="138" height="171" border="0" id="release_notes_r2_c1" /></td>
+        <td valign="top" style="padding:20px;">
+          <h2><%= @note.new_features_title %></h2>
+		  <%= @note.new_features_text %>
+          </td>
+        <td><img src="http://sagaranatech.com/marketing/releasenotes/images/spacer.gif" width="1" height="171" border="0" alt="" /></td>
+      </tr>
+      <tr>
+        <td><img name="release_notes_r3_c1" src="http://sagaranatech.com/marketing/releasenotes/images/release_notes_r3_c1.png" width="138" height="13" border="0" id="release_notes_r3_c1" alt="" /></td>
+        <td><img name="release_notes_r3_c2" src="http://sagaranatech.com/marketing/releasenotes/images/release_notes_r3_c2.png" width="462" height="13" border="0" id="release_notes_r3_c2" alt="" /></td>
+        <td><img src="http://sagaranatech.com/marketing/releasenotes/images/spacer.gif" width="1" height="13" border="0" alt="" /></td>
+      </tr>
+      <tr>
+        <td valign="top"><img name="release_notes_r4_c1" src="http://sagaranatech.com/marketing/releasenotes/images/release_notes_r4_c1.png" width="138" height="164" border="0" id="release_notes_r4_c1" alt="" /></td>
+        <td valign="top" style="padding:20px;">
+          <h2><%= @note.enhancements_title_title %></h2>
+            <%= @note.enhancements_title_text %>
+        </td>
+        <td><img src="http://sagaranatech.com/marketing/releasenotes/images/spacer.gif" width="1" height="141" border="0" alt="" /></td>
+      </tr>
+      <tr>
+        <td><img name="release_notes_r5_c1" src="http://sagaranatech.com/marketing/releasenotes/images/release_notes_r5_c1.png" width="138" height="5" border="0" id="release_notes_r5_c1" alt="" /></td>
+        <td><img name="release_notes_r5_c2" src="http://sagaranatech.com/marketing/releasenotes/images/release_notes_r5_c2.png" width="462" height="5" border="0" id="release_notes_r5_c2" alt="" /></td>
+        <td><img src="http://sagaranatech.com/marketing/releasenotes/images/spacer.gif" width="1" height="5" border="0" alt="" /></td>
+      </tr>
+      <tr>
+        <td valign="top"><img name="release_notes_r6_c1" src="http://sagaranatech.com/marketing/releasenotes/images/release_notes_r6_c1.png" width="138" height="233" border="0" id="release_notes_r6_c1" alt="" /></td>
+        <td valign="top" style="padding:20px;">
+          <h2><%= @note.fixes_title %></h2>
+            <%= @note.fixes_text %>
+        </td>
+        <td><img src="http://sagaranatech.com/marketing/releasenotes/images/spacer.gif" width="1" height="256" border="0" alt="" /></td>
+      </tr>
+      <tr>
+        <td><img name="release_notes_r7_c1" src="http://sagaranatech.com/marketing/releasenotes/images/release_notes_r7_c1.png" width="138" height="92" border="0" id="release_notes_r7_c1" alt="" /></td>
+        <td><img name="release_notes_r7_c2" src="http://sagaranatech.com/marketing/releasenotes/images/release_notes_r7_c2.png" width="462" height="92" border="0" id="release_notes_r7_c2" alt="" /></td>
+        <td><img src="http://sagaranatech.com/marketing/releasenotes/images/spacer.gif" width="1" height="92" border="0" alt="" /></td>
+      </tr>
+      <tr>
+        <td><img name="release_notes_r8_c1" src="http://sagaranatech.com/marketing/releasenotes/images/release_notes_r8_c1.png" width="138" height="85" border="0" id="release_notes_r8_c1" alt="" /></td>
+        <td><img name="release_notes_r8_c2" src="http://sagaranatech.com/marketing/releasenotes/images/release_notes_r8_c2.png" width="462" height="85" border="0" id="release_notes_r8_c2" alt="" /></td>
+        <td><img src="http://sagaranatech.com/marketing/releasenotes/images/spacer.gif" width="1" height="85" border="0" alt="" /></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

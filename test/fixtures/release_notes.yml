@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  language_id: MyString
+  version: MyString
+  title: MyString
+  new_features_title: MyString
+  new_features_text: MyText
+  enhancements_title_title: MyString
+  enhancements_title_text: MyText
+  fixes_title: MyString
+  fixes_text: MyText
+
+two:
+  language_id: MyString
+  version: MyString
+  title: MyString
+  new_features_title: MyString
+  new_features_text: MyText
+  enhancements_title_title: MyString
+  enhancements_title_text: MyText
+  fixes_title: MyString
+  fixes_text: MyText

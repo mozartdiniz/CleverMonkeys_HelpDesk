@@ -1,0 +1,243 @@
+<table class="content">
+  <tr>
+    <td valign="top" style="padding: 0px;">
+      <table style="width: 100%;" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width:1%">
+            <%= priority_generator(@ticket.priority_id) %>
+          </td>
+          <td style="width:30%">
+            <h1>Ticket: <%= @ticket.ticket_number %></h1>
+          </td>
+          <td style="text-align: right; width:90%;" class="dark_background_text">
+            <%= I18n.t 'views.ticket.all.created_by' %> <strong> <%= @ticket.created_by %> </strong>
+            <%= I18n.t 'views.ticket.all.at' %> <strong> <%= @ticket.created_at.strftime("%d/%m/%y") %> </strong>
+            |
+            <%= I18n.t 'views.ticket.all.assigned_to' %>: <strong> <%= @ticket.assignee %> </strong>
+          </td>
+          <td>
+           <% unless @ticket.assigned_user_id.nil? && @enterprise.is_your_company %>
+              <%= ticket_status_generator(@ticket) %>
+            <% else %>
+              <%= link_to "#{I18n.t "views.ticket.all_staff.get_ticket"}", {:action => "get_ticket", :id => @ticket.id}, :class => "get_ticket" %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+  </td>
+  </tr>
+  <tr>
+    <td class='template_field_container'>
+      <% unless @print %>
+      <h3>
+        <% unless @ticket.subject.nil? || @ticket.subject.blank? %>
+          <%= I18n.t 'views.ticket.new.subject' %>: <%= @ticket.subject %>
+        <% end %>
+      </h3>
+      
+      <% end %>
+
+      <% form_for @ticket do |f| %>
+
+        <table class='template_field_container'>
+          <tr>
+            <td class="template_label" style='padding:6px 5px 5px 10px;'>
+              <%= I18n.t "views.ticket.new.client" %>:
+            </td>
+            <td>
+              <% unless @ticket.user.nil? %>
+                <%= @ticket.user.display_name.nil? ? @ticket.user.name : @ticket.user.display_name %>
+              <% else %>
+                <% unless @ticket.assignee.blank? %>
+                  <%= select_tag "ticket[user_id]", enterprise_list_generator, :class => 'form_input', :onchange => remote_function(:update => "ticket_default_values",
+                                                :url => { :action => :ticket_default_values },
+                                                :before => "$('loading_defaults').show();",
+                                                :complete => "$('loading_defaults').hide();",
+                                                :with => "this.name + '=' + this.value") %>                  
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="template_label" style='padding:6px 5px 5px 10px;' valign="top">
+              <%= I18n.t 'views.ticket.new.priority' %>:
+            </td>
+            <td>
+              <span style="font-size: 16px; font-weight: bold;">
+                <% if !@ticket.assigned_user_id.nil? && session[:user_id] == @ticket.assigned_user_id %>
+                  <%= f.select :priority_id, @priorities %>
+                <% else %>
+                  <%= @ticket.priority.description.capitalize %>
+                <% end %>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td class="template_label" style='padding:6px 5px 5px 10px;' valign="top">
+              <%= I18n.t 'views.ticket.new.issue_information.status' %>:
+            </td>
+            <td>
+              <span style="font-size: 16px; font-weight: bold;">
+                <% if !@ticket.assigned_user_id.nil? && session[:user_id] == @ticket.assigned_user_id %>
+                  <%= f.select :ticket_status_id, @statuses, :prompt => "" %>
+                <% else %>
+                  <%= @ticket.ticket_status.description unless @ticket.ticket_status_id.nil? %>
+                <% end %>
+              </span>
+            </td>
+          </tr> 
+        </table>
+
+            <%= template_fields('value') %>
+
+
+          <table class='template_field_container'>
+          <tr>
+            <td class="tableHeader2" colspan="2">
+              <%= I18n.t 'views.ticket.new.issue_information.title' %>
+            </td>
+          </tr>
+          <% unless @ticket.issue_description.blank? %>
+            <tr>
+              <td class="template_label" style='padding:6px 5px 5px 10px;' valign="top">
+                <%= I18n.t 'views.ticket.new.issue_information.describe_the_issue_below' %>:                 
+              </td>
+              <td>
+                <%= ticket_image_inline(@ticket) %>
+              </td>
+            </tr>
+          <% end %>         
+        </table>
+        <br />
+        <% unless @print %>
+        <%= f.submit "#{I18n.t 'views.global.buttons.save_ticket_changes'}", :class => "button" %>
+        <% end %>
+        <br />
+
+      <% end %>
+
+      <h4>
+        <%= I18n.t 'views.ticket.show.files.add_files_to_this_ticket' %>
+      </h4>
+      <p>
+        <%= I18n.t 'views.ticket.show.files.uplad_description' %>
+      </p>
+
+      <% form_for @ticket_file, :html => { :multipart => 'true' } do |f| %>
+        <input type="file" name="ticket_file[file]"/>
+        <input type="hidden" name="ticket_file[ticket_id]" value="<%= @ticket.id %>" />
+        <input type="submit" class="button" value="<%= I18n.t 'views.global.buttons.submit' %>" />
+      <% end %>
+
+      <br />
+      <% unless @print %>
+
+      <% @files.each do |file| %>
+        "<%= link_to file.file_file_name, :controller => 'ticket_files', :action => 'get_file', :id => file.id %>"
+        <a href="/ticket_files/destroy/<%= file.id %>" >
+          <img src="/images/delete_images.png"
+               width="12"
+               style="top: 1px; position: relative;"
+               border="0"/></a>,
+        <% end %>
+      <% end %>
+
+      <% unless @files.empty? %>
+      <br /><br />
+      <% end %>
+      
+      <% unless @ticket.assigned_user_id.nil? %>
+
+      <table>
+        <tr>
+          <td class="tableHeader2" style="padding: 0px;">
+            <table cellpadding="0" cellspacing="0" style="margin: 0px; padding: 0px;">
+              <tr>
+                <td style="width: 1%">
+                  <img src="/images/work_log.png" alt="Replies icon"/>
+                </td>
+                <td style="width: 89%">
+                  <%= I18n.t 'views.ticket.show.work_log.title' %>
+                </td>
+                <td style="text-align: right">
+                  <%= Rufus.to_duration_string @log_work.sum('time_spend') unless @log_work.nil? %>
+                </td>
+              </tr>
+            </table>            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <% if @log_work.nil? %>
+              -- No works for this ticket --
+            <% else %>
+              <% @log_work.each do |l| %>
+                <%= render :partial => "log_works", :locals => {:log => l}  %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <% if @user.enterprise.is_your_company == true %>
+        <% unless @print %>
+        <input type="button"
+               class="button"
+               value="<%= I18n.t 'views.ticket.show.work_log.btn' %>"
+               onclick="<%= remote_function(:update => "log_work",
+                                                :url => {
+                                                    :action => :new_log_work,
+                                                    :ticket_id => @ticket.id,
+                                                    :user_id   => session[:user_id]
+                                                        }
+                                                ) %>"/>
+
+      <br />  <br />
+      <% end %>
+      <span id="log_work"></span>
+
+      <% end %>
+
+      <% end %>
+
+      <table>
+        <tr>
+          <td class="tableHeader2">
+            <img src="/images/replies.gif" alt="Replies icon"/> <%= I18n.t "views.ticket.show.comments.title" %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <% if @comments.nil? %>
+              -- No comments for this ticket --
+            <% else %>
+              <% @comments.each do |c| %>
+                <%= render :partial => "comments", :locals => {:comment => c}  %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <% unless @print %>
+        <input type="button"
+               class="button"
+               value="<%= I18n.t "views.ticket.show.comments.add_comment" %>"
+               onclick="<%= remote_function(:update => "comment_form",
+                                                :url => {
+                                                    :action => :new_comment,
+                                                    :ticket_id => @ticket.id
+                                                        }
+                                                ) %>"/>
+
+        <br /><br />
+        <span id="comment_form"></span>
+     <% end %>
+    </td>
+  </tr>
+</table>
+ <% unless @print %>
+    <div class="buttons_containers_footer">
+      <div class="padding" style="padding-top: 18px;">
+        <a href="/"><%= I18n.t 'views.global.buttons.cancel' %></a>
+      </div>
+    </div>
+  <% end %>

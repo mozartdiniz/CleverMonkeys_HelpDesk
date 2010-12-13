@@ -1,0 +1,32 @@
+<h1 class="grid_data">Editing Language</h1>
+
+<% form_for @language, :url => {:controller => "languages", :action => "update"} do |f| %>
+
+  <div class="form">
+
+    <%= f.error_messages %>
+
+    <p>
+      <%= f.label :iso, "ISO Code (Used for load locales):" %><br />
+      <%= f.text_field :iso, :class => "text" %>
+    </p>
+    <p>
+      <%= f.label :description, "Description:" %><br />
+      <%= f.text_field :description, :class => "text"%>
+    </p>
+
+  </div>
+
+  <div class="buttons_containers_footer">
+    <div class="padding">
+      <%= f.submit 'Update', :class => "button" %> |
+      <%= link_to 'Back', languages_path %>
+    </div>
+  </div>
+
+  <p>
+	
+    
+  </p>
+<% end %>
+

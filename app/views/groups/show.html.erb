@@ -1,0 +1,15 @@
+<div class="form">
+  <h3 style="margin: 0px;">Group: <%=h @group.description %></h3>
+
+  <%= form_tag "/groups/update_permission/#{@group.id}", :method => "post"%>	
+
+  	<%= build_permitions_chooser(@group.id) %>	
+
+</div>
+  <div class="buttons_containers_footer">
+    <div class="padding">
+      <%= submit_tag "Update", :class => "button"%>	 |
+      <%= link_to 'Back', groups_path %>
+    </div>
+  </div>
+

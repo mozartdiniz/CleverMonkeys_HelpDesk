@@ -1,0 +1,78 @@
+<table>
+    <tr>
+      <td class="tableHeader2">
+        <%= I18n.t 'views.ticket.new.server.title' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table  style="width:950px;" border="1">
+          <tr>
+            <td style="width:150px;">
+              <%= I18n.t 'views.ticket.new.server.di_version' %> <br />
+              <%= text_field_with_auto_complete :di_server,
+                                                :version,
+                                                :style => "width:150px",
+                                                :class => "text",
+                                                :value => @ticket.di_version unless @ticket.nil?%>
+            </td>
+            <td style="width:190px;">
+              <%= I18n.t 'views.ticket.new.server.rts_version' %> <br />
+              <%= select :ticket, :rts_versions_id, @rts_versions, :prompt => "" %>
+            </td>
+            <td style="width:230px;">
+              <%= I18n.t 'views.ticket.new.server.di_os_server_version' %> <br />
+              <%= select :ticket, :di_os_version,   @os_versions, :prompt => "" %>
+            </td>
+            <td style="width:180px;">
+              <%= I18n.t 'views.ticket.new.server.di_database_info' %><br />
+              <%= select :ticket, :di_database_info, @db_versions, :prompt => "" %>
+            </td>
+            <td style="width:150px;">
+              <%= I18n.t 'views.ticket.new.server.rts_database_info' %> <br />
+              <%= select :ticket, :rts_database_info, @db_versions, :prompt => "" %>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+     <td class="tableHeader2">
+        <%= I18n.t 'views.ticket.new.device.title' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table style="width:950px;" border="1">
+          <tr>
+            <td style="width:152px;">
+              <%= I18n.t 'views.ticket.new.device.di_version' %> <br />
+              <%= text_field_with_auto_complete :di_device,
+                                                :version,
+                                                :style => "width:150px; z-index: 20; display:block;",
+                                                :class => "text",
+                                                :value => @ticket.device_version unless @ticket.nil? %>
+            </td>
+            <td  style="width:170px;">
+               <%= I18n.t 'views.ticket.new.device.device_model' %> <br />
+               <%= text_field :ticket,
+                              :device_model,
+                              :class => "text",
+                              :style => "width:145px"%>
+            </td>
+            <td style="width:240px;" >
+               <%= I18n.t 'views.ticket.new.device.device_os_version' %>  <br />
+               <%= text_field :ticket,
+                              :device_os_version,
+                              :class => "text",
+                              :style => "width:230px" %>
+            </td>
+            <td style="width:550px;">
+              <%= I18n.t 'views.ticket.new.device.di_user_language' %> <br />
+              <%= select :ticket, :language_id, @languages, :prompt => "" %>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+</table>

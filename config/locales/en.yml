@@ -1,0 +1,139 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  # ActiveRecord
+  activerecord:
+    errors:
+      messages:
+        ticket:
+          invalid_di_server_version: "Invalid DI server version"
+          invalid_di_device_version: "Invalid DI device version"
+  views:
+    global:
+      buttons:
+        save: "Save"
+        cancel: "Cancel"
+        submit: "Submit"
+        back: "Back"
+        save_ticket_changes: "Save ticket changes"
+      menu:
+        tickets: "Tickets"
+        languages: "Languages"
+        user_group: "User Groups"
+        companies: "Companies"
+        users: "Users"
+        global_configuration: "Global Configurations"
+    public:
+      send_mail: "Send Mail"
+      printer_friendly: "Printer Friendly"
+      helpfull_window:
+        thanks: "Thanks"
+        how_be_more_helpfull: "How can we make this more helpfull for you?"
+    ticket:
+      all:
+        ticket: "TICKET"
+        title: "All Tickets"
+        new: "New ticket"
+        number: "Number"
+        subject: "Subject"
+        assignee: "Assignee"
+        di_version: "DI Version"
+        rts_version: "RTS Version"
+        open_date: "Open Date"
+        created_by: "Created by"
+        at: "at"
+        assigned_to: "Assigned to"
+        open_tickets: "Open tickets"
+        assigned_tickets: "Assigned tickets"
+        closed_tickets: "Closed tickets"
+      all_staff:
+        title: "All Tickets"
+        new: "New ticket"
+        number: "Number"
+        subject: "Subject"
+        assignee: "Assignee"
+        di_version: "DI Version"
+        rts_version: "RTS Version"
+        open_date: "Open Date"
+        set_priority: "Set priority to selected tickets"
+        assing_to_user: "Assing selected ticket to user"
+        get_ticket: "GET TICKET"
+      public_window:
+        new: "New Ticket"
+        all: "see all tickets"
+        number: "New Ticket"
+        assing_to_me: "Tickets assigned to me"
+      new:
+        title: "New Ticket"
+        subject: "Subject"
+        priority: "Priority"
+        di_edition: "DI Edition"
+        ticket_type: "Ticket Type"
+        client: "Reporter"
+        server:
+          title: "Server"
+          di_version: "DI Version "
+          rts_version: "RTS Version"
+          di_os_server_version: "DI Server O.S. Version "
+          di_database_info: "DI Database Info "
+          rts_database_info : "RTS Database Info "
+        device:
+          title: "Client"
+          di_version: "DI Version"
+          device_model: "Device Model "
+          device_os_version: "Device O.S. Version "
+          di_user_language: "DI User Language"
+        issue_information:
+          title: "Issue Information"
+          describe_the_issue_below: "Describe the issue below"
+          replicate_error_message_below: "Replicate Error Message below"
+          steps_to_reproduce: "Steps to reproduce"
+          remote_support_instructions: "Remote Support Instructions"
+          aditional_notes: "Additional Notes"
+          status: "Status"
+        files:
+          title: "Files"
+          add_another_file: "Add another file"
+          remove_file: "Remove"
+        validate:
+          message: "DI Versions can`t be blank"
+      show:
+        files:
+          add_files_to_this_ticket: "Add files to this ticket"
+          uplad_description: "You can upload the log files, screenshots or any other files that might help support."
+        comments:
+          title: "Comments"
+          add_comment: "Add comment"
+          new_comment: "New comment"
+          subject: "Subject"
+          message: "Message"
+          add_another_file: "Add another file"
+        work_log:
+          title: "Work Log"
+          btn: "Log Work"
+          window_title: "New log work"
+          time_spend: "Time spent"
+          time_spend_description: " An estimate of how much time you have spent working. <br />
+The format this is *w *d *h *m (representing weeks, days, hours and minutes - where * can be any number)
+<br /><br />
+Examples: 4d, 5h, 30m, 60m and 3w "
+          start_date: "Start Date (d/m/y)"
+          work_description: "Work Description"
+          time_worked: "Time Worked"
+      status_generator:
+        closed: "Closed"
+        cancelled: "Cancelled"
+        resolved: "Resolved"
+        reopened: "Reopened"
+        working: "Working"
+        assigned: "Assigned"
+        forwarded: "Forwarded"
+        open: "Open"
+      send_mail:
+        hello: "Hello"
+        your_ticket: "your ticket"
+        has_a_new_comment: "has a new comment"
+        subject: "Subject"
+        message: "Message"
+        ticket_issue: "Ticket issue description"

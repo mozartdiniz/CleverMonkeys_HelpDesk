@@ -1,0 +1,32 @@
+<table>
+  <tr>
+    <td width="1%" valign="top">
+      <%= image_tag comment.user.photo.url('small') %>
+    </td>
+    <td>
+      <table border="0" cellpadding="0" cellspacing="0" class="comment_grid">
+        <tr>
+          <td style="width:70%; font-weight: bold;">
+            <%= comment.subject %>
+          </td>
+          <td style="width:30%; text-align: right;" valign="top">
+            <%= comment.user.display_name.nil? ? comment.user.name : comment.user.display_name %> | <%= comment.created_at.strftime("%m/%d/%Y %H:%M") %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <pre><%= comment_image_inline(comment) %></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <% comment.comments_files.each do |c| %>
+              <%= link_to c.file_file_name, c %>,
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<hr />

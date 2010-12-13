@@ -1,0 +1,22 @@
+<%= I18n.t "views.ticket.send_mail.hello" %> <%= @user.display_name %>, <br /><br />
+
+<%
+
+  if ENV['RAILS_ENV'] == 'development'
+    host = GlobalConfiguration.find_by_key("system_dev_host").value
+  else
+    host = GlobalConfiguration.find_by_key("system_pro_host").value
+  end
+
+%>
+
+<%= I18n.t "views.ticket.send_mail.your_ticket" %> <strong>(<%= link_to @ticket.ticket_number, "#{host}tickets/#{@ticket.id}" %>)</strong> <%= I18n.t "views.ticket.send_mail.has_a_new_comment" %>: <br /><br />
+
+<strong><%= I18n.t "views.ticket.send_mail.subject" %>: </strong> <%= @assunto %> <br />
+<strong><%= I18n.t "views.ticket.send_mail.message" %>: </strong><br />
+<pre style="font-family:Arial, Helvetica, sans-serif; font-size:12px;">
+<%= @message %>
+</pre>
+
+<strong><%= I18n.t "views.ticket.send_mail.ticket_issue" %>:</strong> <br />
+<%= @issue_description %>

@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" style="height: 100%;">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= system_title %></title>
+  <%= stylesheet_link_tag 'global' %>
+  <%= javascript_include_tag :all %>	
+</head>
+  <body style="width: 100%; height: 100%; margin: 0px; padding: 0px;" onload="$('table_login').style.height = document.height + 'px'">
+
+<%= yield %>
+
+</body>
+</html>

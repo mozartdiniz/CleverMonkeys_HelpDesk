@@ -1,0 +1,124 @@
+<h1 class="grid_data">Global Configurations</h1>
+
+<br /><br />
+
+<%= form_tag('/global_configurations/update') %>
+
+      <table class='template_field_container'>
+        <tr>
+          <td class='template_label'> System Title </td>
+          <td> <input type="text"
+                      name="system_title"
+                      value="<%= @system_title.value %>"
+                      class="text"
+                      style="width: 400px;"/> </td>
+        </tr>
+        <tr>
+          <td class='template_label'> System Footer </td>
+          <td> <input type="text"
+                      name="system_footer"
+                      value="<%= @system_footer.value %>"
+                      class="text"
+                      style="width: 400px;"/> </td>
+        </tr>
+        <tr>
+          <td class='template_label'> Development system address </td>
+          <td> <input type="text"
+                      name="system_dev_host"
+                      value="<%= @system_dev_host.value %>"
+                      class="text"
+                      style="width: 400px;"/> </td>
+        </tr>
+        <tr>
+          <td class='template_label'> Production system address </td>
+          <td> <input type="text"
+                      name="system_pro_host"
+                      value="<%= @system_pro_host.value %>"
+                      class="text"
+                      style="width: 400px;"/> </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="tableHeader2">
+            E-Mail settings to be used with Development environment
+          </td>
+        </tr>
+        <tr>
+          <td class='template_label'> Host </td>
+          <td> <input type="text"
+                      name="dev_host"
+                      value="<%= @dev_host.value %>"
+                      class="text"
+                      style="width: 400px;"/> </td>
+        </tr>
+        <tr>
+          <td class='template_label'> Port </td>
+          <td> <input type="text"
+                      name="dev_port"
+                      value="<%= @dev_port.value %>"
+                      class="text"
+                      style="width: 400px;"/> </td>
+        </tr>
+        <tr>
+          <td class='template_label'> E-Mail Account </td>
+          <td> <input type="text"
+                      name="dev_email"
+                      value="<%= @dev_email.value %>"
+                      class="text"
+                      style="width: 400px;"/> </td>
+        </tr>
+        <tr>
+          <td class='template_label'> Password </td>
+          <td> <input type="text"
+                      name="dev_pass"
+                      value="<%= @dev_pass.value %>"
+                      class="text"
+                      style="width: 400px;"/> </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="tableHeader2">
+            E-Mail settings to be used with Production environment
+          </td>
+        </tr>
+        <tr>
+          <td class='template_label'> Host </td>
+          <td> <input type="text"
+                      name="pro_host"
+                      value="<%= @pro_host.value %>"
+                      class="text"
+                      style="width: 400px;"/> </td>
+        </tr>
+        <tr>
+          <td class='template_label'> Port </td>
+          <td> <input type="text"
+                      name="pro_port"
+                      value="<%= @pro_port.value %>"
+                      class="text"
+                      style="width: 400px;"/> </td>
+        </tr>
+        <tr>
+          <td class='template_label'> E-Mail Account </td>
+          <td> <input type="text"
+                      name="pro_email"
+                      value="<%= @pro_email.value %>"
+                      class="text"
+                      style="width: 400px;"/> </td>
+        </tr>
+        <tr>
+          <td class='template_label'> Password </td>
+          <td> <input type="text"
+                      name="pro_pass"
+                      value="<%= @pro_pass.value %>"
+                      class="text"
+                      style="width: 400px;"/> </td>
+        </tr>
+      </table>
+      <div class="buttons_containers_footer">
+        <div class="padding">
+          <input type="submit" value="UPDATE" class="button" />
+        </div>
+      </div>
+
+
+
+
+

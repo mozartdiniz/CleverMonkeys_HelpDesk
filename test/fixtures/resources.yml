@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  resource_id: MyString
+  language_id: MyString
+  module_id: MyString
+  value: MyString
+  user_modified: 1
+
+two:
+  resource_id: MyString
+  language_id: MyString
+  module_id: MyString
+  value: MyString
+  user_modified: 1

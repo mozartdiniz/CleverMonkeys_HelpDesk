@@ -1,0 +1,22 @@
+<h1 class="grid_data">Editing Group</h1>
+
+<% form_for(@group) do |f| %>
+
+  <div class="form">
+
+    <%= f.error_messages %>
+
+    <p>
+      <%= f.label :description, "Description:" %><br />
+      <%= f.text_field :description, :class => "text" %>
+    </p>
+
+  </div>
+  <div class="buttons_containers_footer">
+    <div class="padding">
+      <%= f.submit 'Update', :class => "button" %> |
+      <%= link_to 'Back', groups_path %>
+    </div>
+  </div>
+
+<% end %>

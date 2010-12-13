@@ -1,0 +1,13 @@
+<p>
+  <b>Language:</b>
+  <%=h @language.language_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @language.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_language_path(@language) %> |
+<%= link_to 'Back', languages_path %>

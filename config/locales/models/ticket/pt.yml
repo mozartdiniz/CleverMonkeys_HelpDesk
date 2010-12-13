@@ -1,0 +1,13 @@
+pt:
+  activerecord:
+    models:
+      ticket:
+        one: "Ticket"
+        other: "Tickets"
+    attributes:
+      ticket:
+        issue_description: "Descrição da pendência"
+        subject: "Assunto"
+      chip:
+        imei: "Imei"
+        number: "Número"

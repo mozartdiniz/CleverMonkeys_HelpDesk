@@ -1,0 +1,51 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  enterprise_id: 1
+  users_id: 1
+  ticket_status_id: 1
+  module_id: MyString
+  di_os_version: 1
+  rts_os_version: 1
+  di_database_info: 1
+  rts_database_info: 1
+  rts_versions_id: 1
+  language_id: MyString
+  priority_id: 1
+  ticket_number: MyString
+  di_version: MyString
+  device_version: MyString
+  device_model: MyString
+  issue_message: MyText
+  issue_description: MyText
+  issue_how_to_reproduce: MyText
+  issue_remote_suport: MyText
+  issue_additional_notes: MyText
+  assigned_user_id: 1
+  due_date: 2010-08-26 18:45:07
+  work_progress: 2010-08-26 18:45:07
+
+two:
+  enterprise_id: 1
+  users_id: 1
+  ticket_status_id: 1
+  module_id: MyString
+  di_os_version: 1
+  rts_os_version: 1
+  di_database_info: 1
+  rts_database_info: 1
+  rts_versions_id: 1
+  language_id: MyString
+  priority_id: 1
+  ticket_number: MyString
+  di_version: MyString
+  device_version: MyString
+  device_model: MyString
+  issue_message: MyText
+  issue_description: MyText
+  issue_how_to_reproduce: MyText
+  issue_remote_suport: MyText
+  issue_additional_notes: MyText
+  assigned_user_id: 1
+  due_date: 2010-08-26 18:45:07
+  work_progress: 2010-08-26 18:45:07

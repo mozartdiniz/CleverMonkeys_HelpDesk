@@ -1,0 +1,101 @@
+<table>
+  <tr>
+    <td valign="top">
+
+      <table>
+        <tr>
+          <td>
+            <h2>Ticket: <%= @ticket.ticket_number %></h2>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h3>Priority: <%= @ticket.priority.description %></h3>
+          </td>
+        </tr>
+        <tr>
+          <td>
+
+            <% unless @ticket.ticket_files.blank? %>
+
+              <h3>Files: </h3>
+              
+              <% @ticket.ticket_files.each do |file| %>
+                <%= file.file_file_name %>,
+              <% end %>
+
+            <% end %>
+                
+          </td>
+        </tr>
+      </table>
+      
+      <br />
+      
+       <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="width:175px;">
+              <strong><%= I18n.t "views.ticket.new.client" %>:</strong> <br />
+              <%= @ticket.user.nil? ? "- - -" : @ticket.user.display_name %>
+            </td>
+            <td style="width:145px;">
+              <strong><%= I18n.t 'views.ticket.new.priority' %>:</strong> <br />
+              <%= @ticket.priority.nil? ? "- - -" : @ticket.priority.description %>
+            </td>
+            <td >
+              <strong><%= I18n.t 'views.ticket.new.ticket_type' %>:</strong> <br />
+                <%= @ticket.ticket_type.nil? ? "- - -" : @ticket.ticket_type.description %>
+            </td>
+          </tr>
+        </table>
+
+        <br /><br />
+
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td>
+              <h3><%= I18n.t 'views.ticket.new.server.title' %></h3>
+            </td>
+          </tr>
+        </table>
+         <br /><br />
+         <table>
+          <tr>
+            <td>
+              <h3><%= I18n.t 'views.ticket.new.issue_information.title' %></h3>
+            </td>
+          </tr>
+          <% unless @ticket.issue_description.blank? %>
+            <tr>
+              <td>
+                <strong><%= I18n.t 'views.ticket.new.issue_information.describe_the_issue_below' %>: </strong><br /><br />
+                <%= @ticket.issue_description %>
+              </td>
+            </tr>
+          <% end %>
+
+
+
+          <tr>
+            <td>
+              <strong><%= I18n.t 'views.ticket.new.priority' %>:</strong>
+              <span style="font-size: 16px; font-weight: bold;">
+                <%= @ticket.priority.description.capitalize %>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong><%= I18n.t 'views.ticket.new.issue_information.status' %>:</strong>
+              <span style="font-size: 16px; font-weight: bold;">
+                <%= @ticket.ticket_status.description unless @ticket.ticket_status_id.nil? %>
+              </span>
+            </td>
+          </tr>
+
+        </table>
+
+    </td>
+  </tr>
+
+</table>

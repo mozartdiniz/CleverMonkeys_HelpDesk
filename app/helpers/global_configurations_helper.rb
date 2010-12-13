@@ -1,0 +1,2 @@
+module GlobalConfigurationsHelper
+end

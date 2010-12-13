@@ -1,0 +1,65 @@
+<h1 class="grid_data">Editing <%= @user.display_name %> profile</h1>
+
+<% form_for @user, :html => { :multipart => true } do |f| %>
+
+  <div class="form">
+
+  <%= f.error_messages %>
+
+  <%= hidden_field_tag 'edit_profile', 'true' %>
+
+  <table class="layout" style="width: 600px;">
+  <tr>
+    <td>
+      <%= image_tag @user.photo.url(:small) %> <br /><br />
+      <%= f.label :photo, "Photo" %><br />
+      <%= f.file_field :photo %>
+    </td>
+    <td>
+      <input type="checkbox" name="delete_image" value="1"/> Delete image
+    </td>
+    <td>
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= f.label :name, "User Name:" %><br />
+      <%= f.text_field :name, :class => "text" %>
+    </td>
+    <td>
+      <%= f.label :display_name, "Display Name:" %><br />
+      <%= f.text_field :display_name, :class => "text" %>
+    </td>
+    <td>
+      <%= f.label :email, "E-Mail:" %><br />
+      <%= f.text_field :email, :class => "text" %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= f.label :password, "Password:" %><br />
+      <%= f.password_field :password, :class => "text" %>
+    </td>
+    <td>
+      <%= f.label :phone_number, "Phone number:" %><br />
+      <%= f.text_field :phone_number, :class => "text" %>
+    </td>
+    <td>
+      <%= f.label :mobile_number, "Mobile number:" %><br />
+      <%= f.text_field :mobile_number, :class => "text" %>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+<div class="buttons_containers_footer">
+  <div class="padding">
+    <%= f.submit 'Update', :class => "button" %> |
+    <%= link_to 'Back to portal index', "/" %>
+  </div>
+</div>
+
+<% end %>
+

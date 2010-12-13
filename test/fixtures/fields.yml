@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  field_type: MyString
+  resources_id: 1
+
+two:
+  field_type: MyString
+  resources_id: 1

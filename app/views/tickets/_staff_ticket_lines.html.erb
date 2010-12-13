@@ -1,0 +1,89 @@
+<% @tickets.each do |ticket| %>
+  <tr>
+    <td><%= check_box_tag 'ticket_ids[]', ticket.id %></td>
+    <td><%= priority_generator(ticket.priority_id) %></td>
+    <td><%= link_to ticket.ticket_number, {:action => 'show', :id => ticket.id} %></td>
+    <td><%= link_to truncate(ticket.subject, :length => 200), {:action => 'show', :id => ticket.id} %></td>
+    <td>
+      <% unless ticket.assignee == ""  %>
+        <%= link_to ticket.assignee, {:action => 'show', :id => ticket.id} %>
+      <% else %>
+        <%= link_to "#{I18n.t "views.ticket.all_staff.get_ticket"}", {:action => "get_ticket", :id => ticket.id}, :class => "get_ticket" %>
+      <% end %>
+    </td>
+    <td>
+      <% unless ticket.di_version.nil? %>
+        <%= link_to ticket.di_version, {:action => 'show', :id => ticket.id} %>
+      <% else %>
+        &nbsp;
+      <% end %>
+    </td>
+    <td>
+      <% unless ticket.roadnet_version.nil? %>
+        <%= link_to ticket.roadnet_version, {:action => 'show', :id => ticket.id} %>
+      <% else %>  
+        &nbsp;
+      <% end %>
+    </td>
+    <td>
+      <% unless ticket.enterprise.nil? %>
+        <%= link_to ticket.enterprise_name, {:action => 'show', :id => ticket.id} %>
+      <% else %>  
+        &nbsp;
+      <% end %>
+    </td>
+    <td><%= link_to ticket.created_at.strftime("%m/%d/%Y"), {:action => 'show', :id => ticket.id} %></td>
+    <td><%= ticket_status_generator(ticket) %></td>
+  </tr>
+<% end %>
+  <tr>
+    <td colspan="10" align="center">
+      
+        <% unless params[:filter].nil? %>
+
+          <% unless params[:filter]['telcos_contract_id'].nil? %>
+            <% telcos_contract_id = params[:filter]['telcos_contract_id'] %>
+          <% else %>
+            <% telcos_contract_id = '' %>
+          <% end %>
+          <% unless params[:filter]['number'].nil? %>
+            <% number = params[:filter]['number'] %>
+          <% else %>
+            <% number = '' %>
+          <% end %>
+          <% unless params[:filter]['imei'].nil? %>
+            <% imei = params[:filter]['imei'] %>
+          <% else %>
+            <% imei = '' %>
+          <% end %>
+          <% unless params[:filter]['can_make_call'].nil? %>
+            <% can_make_call = params[:filter]['can_make_call'] %>
+          <% else %>
+            <% can_make_call = '' %>
+          <% end %>
+          <% unless params[:filter]['can_use_data_network'].nil? %>
+            <% can_use_data_network = params[:filter]['can_use_data_network'] %>
+          <% else %>
+            <% can_use_data_network = '' %>
+          <% end %>
+          <% unless params[:filter]['blocked'].nil? %>
+            <% blocked = params[:filter]['blocked'] %>
+          <% else %>
+            <% blocked = '' %>
+          <% end %>
+          <% unless params[:filter]['can_recieve_call'].nil? %>
+            <% can_recieve_call = params[:filter]['can_recieve_call'] %>
+          <% else %>
+            <% can_recieve_call = '' %>
+          <% end %>
+          <% unless params[:filter]['can_send_sms'].nil? %>
+            <% can_send_sms = params[:filter]['can_send_sms'] %>
+          <% else %>
+            <% can_send_sms = '' %>
+          <% end %>
+        <% end %>
+
+        <%= will_paginate @tickets, :params=>{'authenticity_token' => params[:authenticity_token]} %>
+
+    </td>
+  </tr>

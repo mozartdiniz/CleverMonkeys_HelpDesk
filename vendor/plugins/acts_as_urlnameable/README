@@ -1,0 +1,193 @@
+== About
+
+This plugin provides an easy way to give your ActiveRecord models clean urlnames, for
+use anywhere you don't want to use a plain old integer id.
+
+To use it, first either copy over the migration in <tt>db/00x_add_urlnames_table.rb</tt>
+and migrate it to it, or import the SQL in <tt>db/urlnames_table.sql</tt>.
+
+This plugin also requires at least Rails 1.1 (currently edge. See http://wiki.rubyonrails.com/rails/pages/EdgeRails)
+For updates see http://gabriel.gironda.org, and for licensing see LICENSE.
+
+Version: 0.6
+
+---- 
+
+== Simple usage:
+
+=== Setting the url name
+
+The usage that will work for 80% of cases is this:
+
+	class Article < ActiveRecord::Base
+	  acts_as_urlnameable :title
+	end
+
+This will format the value of the +title+ attribute of the record to one suitable for
+use in a URL and save it. Further changes to +title+ will not overwrite the url name.
+The value can then be accessed with +object.urlname+. If the url name already exists,
+an error will be added to the +urlname+ attribute.
+
+To allow overwrites of the url name, call +acts_as_urlname+ with the following option:
+
+	class Article < ActiveRecord::Base
+	  acts_as_urlnameable :title, :overwrite => true
+	end
+
+=== Validation
+
+The url name will now be overwritten if the value of +title+ changes. To change the 
+default validation message you can use the <tt>:message</tt> option:
+
+	class Article < ActiveRecord::Base
+	  acts_as_urlnameable :title, :overwrite => true, :message => 'is unavailable.'
+	end
+
+=== Finding records
+
+Records can be located via the +find_by_urlname+ method, like so:
+
+	Article.find_by_urlname('some_urlname')
+
+
+----
+
+== Advanced usage:
+
+This section is for those of us who like to mess with ActiveRecord a little more than
+usual.
+
+=== Setting the url name
+
+You can set objects to be known by any past url names they may have had, even if the 
+current one is different. The usage in this case would be: 
+
+	class Article < ActiveRecord::Base
+	  acts_as_urlnameable :title, :mode => :multiple
+	end
+	
+The instance method +past_urlnames+ will then return all url names other than the current
+one, while +all_urlnames+ will return all url names the object has ever been known by,
+including the current url name. The <tt>:overwrite</tt> option has no effect on objects
+with multiple urlnames for obvious reasons.
+
+You can also define your own <tt>urlnameify</tt> method if you would prefer not to use the
+default url name formatting.
+
+	class Article < ActiveRecord::Base
+	  acts_as_urlnameable :title, :mode => :multiple
+	
+		protected
+		def urlnameify(text)
+			text.to_s.downcase + '_permalink'
+		end
+	end
+
+=== Validation
+
+Acts as Urlnameable gives you five options for validation:
+
+	* Skip any kind of validation (usually undesirable)
+	* Validating against the base class (the default)
+	* Validating against the child class (for use with single table inheritance)
+	* Validating against the parent object (for associations)
+	* Define your own validate_urlname method
+
+==== Skipping validation
+
+To skip validation, use the plugin like so:
+
+	class Article < ActiveRecord::Base
+	  acts_as_urlnameable :title, :mode => :multiple, :validate => false
+	end
+
+==== Validating against the base class or child class
+
+If you're using single table inheritance in ActiveRecord, and your models look like this for example:
+
+	class Article < ActiveRecord::Base
+	  acts_as_urlnameable :title
+	end
+
+	class SpecialArticle < Article
+	end
+
+	class Draft < Article
+	end
+	
+Then by default, a Draft can not have the same url name as a SpecialArticle. If you'd like to change
+this behaviour, then use the <tt>:sti_class</tt> option with <tt>:validate</tt>
+
+	class Article < ActiveRecord::Base
+	  acts_as_urlnameable :title, :validate => :sti_class
+	end
+
+Now Draft and SpecialArticle can have the same url name set. <tt>SpecialArticle.find_by_urlname</tt>
+will find only the SpecialArticle with the matching url name, and <tt>Draft.find_by_urlname</tt> will
+find only the Draft with the url name given. 
+
+<tt>Article.find_by_urlname</tt> will find the first Article with the given url name, whereas <tt>Article.find_all_by_urlname</tt>
+will find both the Draft and SpecialArticle objects.
+
+==== Validating against the parent object
+
+Here's an example model setup:
+
+	class Person < ActiveRecord::Base
+		has_many :articles
+	end
+	
+	class Article < ActiveRecord::Base
+	  acts_as_urlnameable :title
+		belongs_to :person
+	end
+
+If you would like to validate the url name for an article against the parent object, pass the name
+of the <tt>belongs_to</tt> association as the option for <tt>:validate</tt>. Example:
+
+	class Article < ActiveRecord::Base
+	  acts_as_urlnameable :title, :validate => :person
+		belongs_to :person
+	end
+
+Now for the validation to work properly, you must instantiate the new article through the association.
+This is best explained like this:
+	
+	# Find two different people
+	bob = Person.find_by_first_name('bob')
+	joe = Person.find_by_first_name('joe')
+	
+	# Have Bob write a new article
+	bobs_article = bob.articles.build(:title => "My first article", :body => "This is my first article")
+	bobs_article.save 	# passes validation and saves ok
+	
+	# Have Joe write a new article
+	joes_article = joe.articles.build(:title => "My first article", :body => "This is my first article")
+	joes_article.save		# passes validation and saves ok
+
+	# Find Bob's first article
+	bob.articles.find_by_urlname('my_first_article')
+	
+	# Find Joe's first article
+	joe.articles.find_by_urlname('my_first_article')
+	
+Both articles validate because the validation is scoped against the owner. Bob and Joe can both have 
+articles known as 'my_first_article', and the finder method will find only their own articles. 
+<tt>Article.find_all_by_urlname('my_first_article')</tt> will find both articles.
+
+==== Custom validation
+
+You can also define your own validate_urlname method in the class for custom validation, like so:
+
+	class Person < ActiveRecord::Base
+	  acts_as_urlnameable :first_name
+	
+		protected
+		def validate_urlname
+			if Person.find_by_urlname(attr_to_urlname)
+				errors.add(:urlname, 'is not available.')
+			elsif attr_to_urlname == 'bob'
+				errors.add_to_base('You might be Bob, and I hate Bob.')
+			end
+		end
+	end

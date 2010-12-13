@@ -1,0 +1,82 @@
+<% remote_form_for :log_work, @log_work, :url => {:controller => :log_works, :action => :create}, :html => { :method => :post} do |f|  %>
+
+  <table border="0"
+         cellpadding="0"
+         cellspacing="0"
+         width="100%"
+         class="work_log_box">
+    <tr>
+      <th valign="top"
+          width="1">&nbsp;</th>
+      <th style="padding:5px;"
+          width="99%">
+          <%= I18n.t "views.ticket.show.work_log.window_title" %>
+      </th>
+      <th valign="top"
+          align="right"
+          width="1"></th>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+        <br /><%= I18n.t "views.ticket.show.work_log.time_spend" %>:
+        <input type="text"
+               style="width: 200px"
+               name="log_work[time_spend]"/>
+        <br /><br />
+        <span style="font-size: 11px">
+          <%= I18n.t "views.ticket.show.work_log.time_spend_description" %>
+        </span>
+        <br />
+        <input type="hidden"
+               style="width: 100%"
+               name="log_work[ticket_id]"
+               value="<%= @ticket.id %>"/>
+
+        <input type="hidden"
+               style="width: 100%"
+               name="log_work[user_id]"
+               value="<%= @user.id %>"/>
+
+        <br/>
+        <%= I18n.t "views.ticket.show.work_log.start_date" %>:<br/>
+
+        <%= f.date_select(:start_date, :use_month_numbers => true,
+                                       :order => [:month, :day, :year]) %>
+
+        <br/><br/><%= I18n.t "views.ticket.show.work_log.work_description" %>:<br/>
+        <textarea style="width:100%;"
+                  rows="7"
+                  name="log_work[description]"
+                  wrap="hard"></textarea>
+        <br/>
+
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td>
+        <input type="submit"
+               name="submit"
+               value="<%= I18n.t "views.global.buttons.save" %>"
+               class="button"/> |
+
+        <a href="#" onclick="<%= remote_function(:update => "log_work",
+                                                :url => {
+
+                                                    :action => :clear_log_work,
+                                                    :ticket_id => @ticket.id,
+                                                    :user_id   => session[:user_id]
+                                                        }
+                                                ) %>"><%= I18n.t "views.global.buttons.cancel" %></a>
+
+      </td>
+      <td></td>
+    </tr>
+  </table>
+
+<% end %>
+
+<br />  
