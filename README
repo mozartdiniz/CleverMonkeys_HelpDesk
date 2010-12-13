@@ -1,0 +1,38 @@
+== Thanks for choosing Clever Monkeys Help Desk
+
+
+Installing
+
+1. rake db:create
+2. rake db:migrate
+3. rake db:seed
+
+4 user will be created, the system administrator, support manager, the technical
+support and customer.
+
+Administrator
+
+username: admin
+password: admin
+
+Customer
+
+username: customer
+password: customer
+
+Support manager
+
+username: support
+password: support
+
+Technical support
+
+username: support_manager
+password: support_manager
+
+== Permissions
+
+On page groups of users you can configure the permissions for each group.
+
+== In the documents folder is the database model in MySql Workbench format
+
